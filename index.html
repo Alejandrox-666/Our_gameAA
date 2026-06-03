@@ -3,48 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#2D2A5E">
-<meta name="description" content="Juego de cartas para parejas: 300 preguntas para reír, recordar y conectar.">
-<meta property="og:title" content="Juego de Cartas — Alejandro & Alejandra">
-<meta property="og:description" content="300 preguntas para reír, recordar y conectar.">
+<meta name="theme-color" content="#1a1a2e">
+<meta name="description" content="Juego de cartas premium para parejas: 300 preguntas y retos para conectar, reír y atreverse.">
+<meta property="og:title" content="NUESTRO JUEGO DE CARTAS — Juego Premium para Parejas">
+<meta property="og:description" content="300 cartas: preguntas profundas, picantes, divertidas y retos exclusivos.">
 <meta property="og:type" content="website">
-<title>Juego de Cartas — Alejandro & Alejandra</title>
-<link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%232D2A5E'/><text x='32' y='44' font-size='40' text-anchor='middle' fill='%23E8B4B8' font-family='Georgia'>♥</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
+<title>NUESTRO JUEGO DE CARTAS — Juego Premium para Parejas</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --pastel-pink: #E8B4B8;
-    --pastel-blue: #B4D4E8;
-    --pastel-lavender: #C4B4E8;
-    --pastel-mint: #B4E8D4;
-    --pastel-peach: #F0D4B4;
-    --pastel-rose: #E8C4C8;
-    --pastel-sage: #C4D4B4;
-    --dark-bg: #2D2A5E;
-    --card-bg: #F5F0E8;
-    --text-dark: #2A2438;
-    --text-muted: #6B5B7B;
-    --gold-light: #E8C060;
-    --gold-dark: #C9952A;
-    --radius: 20px;
-    --shadow: 0 10px 30px rgba(0,0,0,0.2);
-    --shadow-hover: 0 15px 40px rgba(0,0,0,0.25);
-    --shadow-glow: 0 0 30px rgba(232,180,184,0.4);
-    --cat-recuerdo: #9B87F5;
-    --cat-picante: #F59B87;
-    --cat-divertida: #87F5B4;
-    --cat-profunda: #87B4F5;
+    --bg-primary: #0f0f1a;
+    --bg-secondary: #1a1a2e;
+    --bg-card: #16213e;
+    --gold: #D4AF37;
+    --gold-light: #F3E5AB;
+    --gold-dark: #997a00;
+    --accent-purple: #9b59b6;
+    --accent-pink: #e84393;
+    --accent-blue: #3498db;
+    --accent-green: #2ecc71;
+    --accent-orange: #e67e22;
+    --text-primary: #ffffff;
+    --text-secondary: #b8b8d0;
+    --text-muted: #6c6c8a;
+    --shadow: 0 20px 40px rgba(0,0,0,0.4);
+    --shadow-glow: 0 0 20px rgba(212, 175, 55, 0.3);
+    --radius: 24px;
+    --cat-recuerdo: #3498db;
+    --cat-picante: #e84393;
+    --cat-divertida: #f39c12;
+    --cat-profunda: #9b59b6;
+    --cat-reto: #e74c3c;
   }
   html, body { height: 100%; }
   body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #2D2A5E 0%, #4A4070 50%, #2D2A5E 100%);
+    font-family: 'Montserrat', sans-serif;
+    background: radial-gradient(ellipse at top, #1a1a2e 0%, #0a0a15 100%);
     min-height: 100dvh;
-    color: var(--text-dark);
+    color: var(--text-primary);
     padding: 1.5rem 1rem 3rem;
-    padding-bottom: max(3rem, env(safe-area-inset-bottom));
     position: relative;
     overflow-x: hidden;
   }
@@ -55,400 +53,524 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 20% 50%, rgba(232,180,184,0.1) 0%, transparent 50%);
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.03"><path fill="none" d="M20,20 L80,20 M20,40 L80,40 M20,60 L80,60 M20,80 L80,80 M40,20 L40,80 M60,20 L60,80" stroke="%23D4AF37" stroke-width="1"/><circle cx="50" cy="50" r="30" fill="none" stroke="%23D4AF37" stroke-width="0.5"/></svg>') repeat;
     pointer-events: none;
     z-index: 0;
   }
   main { max-width: 600px; margin: 0 auto; position: relative; z-index: 1; }
 
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(2deg); }
-  }
-  @keyframes pulse-glow {
-    0%, 100% { filter: drop-shadow(0 0 10px rgba(232,180,184,0.6)); }
-    50% { filter: drop-shadow(0 0 25px rgba(232,180,184,0.9)); }
-  }
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes notificationSlide {
-    from { opacity: 0; transform: translateX(100%); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-  @keyframes fadeOut {
-    to { opacity: 0; transform: translateX(100%); }
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); text-shadow: 0 0 0px rgba(232,180,184,0); }
-    50% { opacity: 0.7; transform: scale(1.1); text-shadow: 0 0 10px rgba(232,180,184,0.8); }
-  }
-
   .skip { position: absolute; left: -9999px; }
-  .skip:focus { left: 1rem; top: 1rem; background: var(--gold-light); color: var(--dark-bg); padding: .5rem 1rem; border-radius: 8px; z-index: 1000; }
+  .skip:focus { left: 1rem; top: 1rem; background: var(--gold); color: #0a0a15; padding: .5rem 1rem; border-radius: 12px; z-index: 999; font-weight: 600; }
 
-  .header { text-align: center; margin-bottom: 2rem; animation: slideIn 0.6s ease-out; }
-  .header-logo {
-    width: 80px; height: 80px; margin: 0 auto 1rem;
-    filter: drop-shadow(0 0 20px rgba(232,180,184,0.5));
-    animation: float 3s ease-in-out infinite;
-    cursor: pointer;
-    transition: transform 0.3s ease;
+  /* Header Premium */
+  .header { text-align: center; margin-bottom: 2rem; }
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
   }
-  .header-logo:hover { transform: scale(1.05); }
+  .header-logo {
+    width: 85px;
+    height: 85px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow), 0 0 30px rgba(212, 175, 55, 0.4);
+    animation: float 3s ease-in-out infinite;
+    position: relative;
+  }
+  .header-logo::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    border-radius: 33px;
+    z-index: -1;
+    opacity: 0.5;
+    filter: blur(5px);
+  }
+  .header-logo span {
+    font-size: 42px;
+    font-weight: 800;
+    color: #0a0a15;
+    letter-spacing: 3px;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
   .header h1 {
-    font-size: 28px; font-weight: 700; letter-spacing: 0.02em;
-    color: var(--pastel-pink); text-transform: uppercase;
-    font-family: 'Playfair Display', serif;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-    background: linear-gradient(135deg, var(--pastel-pink), var(--pastel-lavender));
+    font-size: 28px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    color: transparent;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 10px rgba(212,175,55,0.2);
+  }
+  .header .subtitle {
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 8px;
   }
   .header p {
-    font-size: 13px; color: var(--pastel-lavender);
-    letter-spacing: 0.1em; text-transform: uppercase; margin-top: 8px;
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 10px;
   }
 
-  .stats-panel {
-    background: rgba(245,240,232,0.95);
-    border-radius: var(--radius);
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    box-shadow: var(--shadow);
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 1rem;
-    animation: slideIn 0.6s ease-out 0.1s both;
-  }
-  .stat-item { text-align: center; flex: 1; min-width: 80px; }
-  .stat-label { font-size: 10px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px; }
-  .stat-value { font-size: 20px; font-weight: 700; font-family: 'Playfair Display', serif; color: var(--dark-bg); }
-  .stat-badge {
-    background: linear-gradient(135deg, var(--gold-dark), var(--gold-light));
-    border-radius: 20px;
-    padding: 2px 8px;
-    font-size: 10px;
-    font-weight: 700;
-    color: white;
-    display: inline-block;
-    margin-top: 5px;
-  }
-
-  .scoreboard { display: flex; gap: 15px; margin-bottom: 1.5rem; animation: slideIn 0.6s ease-out 0.2s both; }
+  /* Scoreboard Premium */
+  .scoreboard { display: flex; gap: 15px; margin-bottom: 1.5rem; }
   .score-card {
-    flex: 1; border-radius: var(--radius);
-    background: rgba(245,240,232,0.95);
+    flex: 1;
+    border-radius: var(--radius);
+    background: rgba(22, 33, 62, 0.8);
+    backdrop-filter: blur(10px);
     padding: 1rem;
     text-align: center;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
-    font: inherit;
-    color: inherit;
-    border: 2px solid transparent;
+    border: 1px solid rgba(212, 175, 55, 0.2);
     box-shadow: var(--shadow);
   }
-  .score-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
-  .score-card.active { border-color: var(--gold-light); background: white; transform: scale(1.02); box-shadow: var(--shadow-glow); }
-  .score-name { font-size: 12px; font-weight: 600; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
-  .score-num { font-size: 36px; font-weight: 800; color: var(--dark-bg); font-family: 'Playfair Display', serif; }
-  .score-card.active .score-name { color: var(--gold-dark); }
-
-  .turn-label {
-    font-size: 14px; font-weight: 500;
-    color: var(--pastel-lavender);
-    text-align: center; margin-bottom: 1.5rem; letter-spacing: 0.05em;
-    animation: slideIn 0.6s ease-out 0.3s both;
+  .score-card.active {
+    border: 1px solid var(--gold);
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(22, 33, 62, 0.9));
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+    transform: translateY(-3px);
   }
-  .turn-label span { color: var(--pastel-pink); font-weight: 700; }
+  .score-name {
+    font-size: 11px;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .score-num {
+    font-size: 36px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .score-card.active .score-name { color: var(--gold); }
 
-  .timer-container {
-    background: rgba(245,240,232,0.95);
-    border-radius: 50px;
-    padding: 8px 20px;
-    margin-bottom: 1.5rem;
+  /* Turn Label */
+  .turn-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 1rem;
+    background: rgba(22, 33, 62, 0.8);
+    backdrop-filter: blur(10px);
     display: inline-block;
     width: auto;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
-    box-shadow: var(--shadow);
-    animation: slideIn 0.6s ease-out 0.35s both;
+    padding: 8px 24px;
+    border-radius: 99px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
   }
-  .timer-label { font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
-  .timer-value { font-size: 36px; font-weight: 800; font-family: 'Playfair Display', monospace; color: var(--dark-bg); margin-left: 10px; }
-  .timer-value.warning { color: #E8B4B8; animation: pulse 0.5s ease-in-out infinite; }
-
-  .filter-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; animation: slideIn 0.6s ease-out 0.4s both; }
-  .filter-btn {
-    font-size: 11px; padding: 8px 18px; border-radius: 99px;
-    border: none;
-    background: rgba(245,240,232,0.9);
-    color: var(--text-muted);
-    cursor: pointer;
-    font-weight: 600;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    font-family: 'Poppins', sans-serif;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  .turn-label span {
+    color: var(--gold);
+    font-weight: 800;
   }
-  .filter-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
-  .filter-btn[aria-pressed="true"] { font-weight: 700; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-  .filter-btn[aria-pressed="true"][data-cat="recuerdo"]  { background: var(--cat-recuerdo); color: white; }
-  .filter-btn[aria-pressed="true"][data-cat="picante"]   { background: var(--cat-picante); color: white; }
-  .filter-btn[aria-pressed="true"][data-cat="divertida"] { background: var(--cat-divertida); color: var(--text-dark); }
-  .filter-btn[aria-pressed="true"][data-cat="profunda"]  { background: var(--cat-profunda); color: white; }
-  .filter-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
-  .deck-area {
-    position: relative; height: 370px;
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 1.5rem;
-    perspective: 1500px;
+  /* Timer Premium */
+  .timer-container {
+    background: rgba(22, 33, 62, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 99px;
+    padding: 4px;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    overflow: hidden;
   }
-  .card {
-    width: min(350px, 88vw); height: 340px;
-    border-radius: var(--radius);
-    background: var(--card-bg);
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    padding: 2rem; text-align: center;
-    position: absolute;
-    box-shadow: var(--shadow);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .card-stack-4 { transform: rotate(-8deg) translateY(18px); background: linear-gradient(135deg, #E0D8D0, #F0EAE2); opacity: 0.4; filter: blur(2px); }
-  .card-stack-3 { transform: rotate(-4deg) translateY(12px); background: linear-gradient(135deg, #E8E0D8, #F5F0E8); opacity: 0.6; filter: blur(1px); }
-  .card-stack-2 { transform: rotate(3deg) translateY(6px); background: linear-gradient(135deg, #F0E8E0, #F5F0E8); opacity: 0.8; }
-  .card-stack-1 { transform: rotate(-2deg) translateY(3px); background: linear-gradient(135deg, #F8F2EA, #F5F0E8); opacity: 0.95; }
-
-  .flipper {
-    width: min(350px, 88vw);
-    height: 340px;
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
-    cursor: pointer;
-  }
-  .flipper.flipped { transform: rotateY(180deg); }
-  .flipper .card { backface-visibility: hidden; position: absolute; width: 100%; height: 100%; }
-  .card-front { transform: rotateY(180deg); background: linear-gradient(135deg, #FFFFFF, #F8F4EE); }
-  .card-back {
-    cursor: pointer;
-    background: linear-gradient(135deg, var(--dark-bg), #3A3568);
-    border: 2px solid var(--gold-light);
-    transform: rotateY(0deg);
-  }
-  .card-back:hover { transform: scale(1.02); box-shadow: var(--shadow-hover); }
-  .card-back-logo { width: 100px; height: 100px; margin-bottom: 15px; filter: drop-shadow(0 0 15px rgba(232,180,184,0.6)); animation: pulse-glow 2s ease-in-out infinite; }
-  .card-back-text { font-size: 14px; color: var(--pastel-pink); letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500; }
-
-  .card-header { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 20px; }
-  .category-badge {
-    font-size: 11px; font-weight: 700; padding: 6px 16px;
-    border-radius: 99px; letter-spacing: 0.12em; text-transform: uppercase;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  }
-  .cat-recuerdo  { background: var(--cat-recuerdo); color: white; }
-  .cat-picante   { background: var(--cat-picante); color: white; }
-  .cat-divertida { background: var(--cat-divertida); color: var(--text-dark); }
-  .cat-profunda  { background: var(--cat-profunda); color: white; }
-
-  .card-divider { width: 80px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold-light), transparent); margin-bottom: 20px; }
-  .card-question { font-size: 18px; font-weight: 500; color: var(--text-dark); line-height: 1.6; font-family: 'Playfair Display', serif; max-height: 200px; overflow-y: auto; padding: 0 10px; }
-
-  .remaining { font-size: 12px; color: var(--pastel-lavender); text-align: center; margin-bottom: 1.5rem; letter-spacing: 0.1em; font-weight: 500; }
-
-  .actions { display: flex; gap: 15px; justify-content: center; margin-bottom: 1.5rem; flex-wrap: wrap; }
-  .btn {
-    border-radius: 99px; padding: 12px 28px; font-size: 13px;
-    font-weight: 600;
-    cursor: pointer; letter-spacing: 0.08em; text-transform: uppercase;
-    font-family: 'Poppins', sans-serif;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    min-height: 44px;
-    border: none;
-    background: rgba(245,240,232,0.95);
-    color: var(--text-muted);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  .timer-bar {
+    height: 8px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    border-radius: 99px;
+    width: 100%;
+    transition: width 0.3s linear;
     position: relative;
     overflow: hidden;
   }
-  .btn::before {
+  .timer-bar::after {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.3);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 1.5s infinite;
   }
-  .btn:hover::before { width: 300px; height: 300px; }
-  .btn:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
-  .btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
-  .btn-primary { background: linear-gradient(135deg, var(--gold-dark), var(--gold-light)); color: white; font-weight: 700; }
-  .btn-primary:hover:not(:disabled) { background: linear-gradient(135deg, var(--gold-light), var(--gold-dark)); transform: translateY(-3px); }
-  .btn-check { background: var(--pastel-mint); color: var(--text-dark); }
-  .btn-check:hover:not(:disabled) { background: #A4D8C4; transform: translateY(-3px); }
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  .timer-text {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-top: 8px;
+    font-family: monospace;
+    letter-spacing: 2px;
+  }
+  .timer-warning {
+    color: #ff6b6b;
+    text-shadow: 0 0 10px #ff6b6b;
+    animation: pulse 0.5s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.05); }
+  }
 
-  .toolbar { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
-  .toolbar .btn { padding: 8px 20px; font-size: 12px; min-height: 36px; }
+  /* Filters */
+  .filter-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem; }
+  .filter-btn {
+    font-size: 11px;
+    padding: 8px 18px;
+    border-radius: 99px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    background: rgba(22, 33, 62, 0.8);
+    backdrop-filter: blur(5px);
+    color: var(--text-secondary);
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+  .filter-btn:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .filter-btn[aria-pressed="true"] {
+    background: var(--cat-recuerdo);
+    border-color: transparent;
+    color: white;
+    box-shadow: 0 0 15px rgba(52,152,219,0.5);
+  }
+  .filter-btn[aria-pressed="true"][data-cat="recuerdo"] { background: var(--cat-recuerdo); }
+  .filter-btn[aria-pressed="true"][data-cat="picante"] { background: var(--cat-picante); }
+  .filter-btn[aria-pressed="true"][data-cat="divertida"] { background: var(--cat-divertida); }
+  .filter-btn[aria-pressed="true"][data-cat="profunda"] { background: var(--cat-profunda); }
+  .filter-btn[aria-pressed="true"][data-cat="reto"] { background: var(--cat-reto); }
+  .filter-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
-  .notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: white;
-    border-radius: 12px;
-    padding: 12px 20px;
-    box-shadow: var(--shadow-hover);
+  /* Deck Area */
+  .deck-area {
+    position: relative;
+    height: 340px;
     display: flex;
     align-items: center;
-    gap: 12px;
-    z-index: 1000;
-    animation: notificationSlide 0.3s ease-out;
-    border-left: 4px solid var(--gold-light);
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    perspective: 2000px;
   }
-  .notification.success { border-left-color: var(--pastel-mint); }
-  .notification.achievement { background: linear-gradient(135deg, var(--gold-light), var(--gold-dark)); color: white; }
-  .notification.fade-out { animation: fadeOut 0.3s ease-out forwards; }
+  .card {
+    width: min(340px, 88vw);
+    height: 320px;
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, var(--bg-card), #0f0f1a);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+    position: absolute;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    backdrop-filter: blur(10px);
+  }
+  .card-stack-2 {
+    transform: rotate(-8deg) translateY(10px);
+    background: linear-gradient(135deg, #0f0f1a, #0a0a15);
+    opacity: 0.8;
+  }
+  .card-stack-1 {
+    transform: rotate(-4deg) translateY(5px);
+    background: linear-gradient(135deg, #13132a, #0d0d1a);
+    opacity: 0.9;
+  }
 
-  .empty-state { text-align: center; background: rgba(245,240,232,0.95); border-radius: var(--radius); padding: 3rem; box-shadow: var(--shadow); }
-  .empty-state div { color: var(--text-dark); margin: 1rem 0; }
-  
-  .ornament { color: var(--gold-light); font-size: 20px; letter-spacing: 0.3em; text-align: center; margin-bottom: 1rem; opacity: 0.6; }
+  .flipper {
+    width: min(340px, 88vw);
+    height: 320px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+  }
+  .flipper.flipped { transform: rotateY(180deg); }
+  .flipper .card { backface-visibility: hidden; position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+  .flipper .card-front { transform: rotateY(180deg); }
+
+  .card-back {
+    cursor: pointer;
+    background: linear-gradient(135deg, #1a1a2e, #0f0f1a);
+    border: 2px solid rgba(212, 175, 55, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+  .card-back:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+    border-color: var(--gold);
+  }
+  .card-back-logo {
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    animation: pulse-glow 2s infinite;
+  }
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.5); }
+    50% { box-shadow: 0 0 40px rgba(212, 175, 55, 0.8); }
+  }
+  .card-back-logo span {
+    font-size: 46px;
+    font-weight: 800;
+    color: #0a0a15;
+    letter-spacing: 4px;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .card-back-text {
+    font-size: 12px;
+    color: var(--text-secondary);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+
+  .card-header { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .category-badge {
+    font-size: 10px;
+    font-weight: 800;
+    padding: 8px 20px;
+    border-radius: 99px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: white;
+  }
+  .cat-recuerdo { background: var(--cat-recuerdo); box-shadow: 0 0 15px rgba(52,152,219,0.5); }
+  .cat-picante { background: var(--cat-picante); box-shadow: 0 0 15px rgba(232,67,147,0.5); }
+  .cat-divertida { background: var(--cat-divertida); box-shadow: 0 0 15px rgba(243,156,18,0.5); }
+  .cat-profunda { background: var(--cat-profunda); box-shadow: 0 0 15px rgba(155,89,182,0.5); }
+  .cat-reto { background: var(--cat-reto); box-shadow: 0 0 15px rgba(231,76,60,0.5); }
+
+  .card-divider {
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin-bottom: 20px;
+  }
+  .card-question {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .remaining {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+    background: rgba(22, 33, 62, 0.8);
+    backdrop-filter: blur(5px);
+    display: inline-block;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 6px 18px;
+    border-radius: 99px;
+  }
+
+  .actions { display: flex; gap: 12px; justify-content: center; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .btn {
+    border-radius: 99px;
+    padding: 12px 28px;
+    font-size: 12px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: none;
+    transition: all 0.2s ease;
+    min-height: 44px;
+  }
+  .btn:hover:not(:disabled) { transform: translateY(-3px); filter: brightness(1.05); }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: #0a0a15;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+  }
+  .btn-check {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+    color: white;
+  }
+  .btn-secondary {
+    background: rgba(22, 33, 62, 0.9);
+    backdrop-filter: blur(5px);
+    color: var(--text-primary);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+  }
+
+  .toolbar { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 1rem; }
+  .toolbar .btn { padding: 8px 16px; font-size: 10px; min-height: 36px; background: rgba(22, 33, 62, 0.9); backdrop-filter: blur(5px); }
+
+  .empty-state {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 2rem;
+    background: rgba(22, 33, 62, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+  }
+  .ornament {
+    color: var(--gold);
+    font-size: 18px;
+    letter-spacing: 8px;
+    text-align: center;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+  }
 
   dialog {
-    background: var(--card-bg);
-    color: var(--text-dark);
-    border: none;
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+    color: var(--text-primary);
+    border: 1px solid var(--gold);
     border-radius: var(--radius);
     padding: 2rem;
     max-width: 90vw;
-    width: 420px;
-    font-family: 'Poppins', sans-serif;
-    box-shadow: var(--shadow-hover);
+    width: 400px;
+    box-shadow: var(--shadow);
   }
-  dialog::backdrop { background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); }
-  dialog h2 { font-size: 20px; color: var(--dark-bg); letter-spacing: 0.05em; margin-bottom: 1.5rem; text-align: center; font-weight: 700; font-family: 'Playfair Display', serif; }
-  dialog label { display: block; font-size: 12px; font-weight: 600; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
-  dialog input, dialog select, dialog textarea {
-    width: 100%; padding: 12px; border-radius: 12px;
-    background: #FFFFFF;
-    border: 2px solid #E0D8D0;
-    color: var(--text-dark);
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
+  dialog::backdrop { background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); }
+  dialog h2 {
+    font-size: 18px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
     margin-bottom: 1.5rem;
-    transition: border-color 0.3s ease;
+    text-align: center;
+    font-weight: 700;
   }
-  dialog input:focus, dialog select:focus, dialog textarea:focus { outline: none; border-color: var(--gold-light); }
+  dialog label {
+    display: block;
+    font-size: 11px;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  dialog input, dialog select, dialog textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    background: rgba(15, 15, 26, 0.8);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: var(--text-primary);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    margin-bottom: 1rem;
+  }
+  dialog input:focus, dialog select:focus, dialog textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+  }
   dialog textarea { min-height: 100px; resize: vertical; }
-  dialog .row { display: flex; gap: 12px; justify-content: flex-end; margin-top: 0.5rem; }
+  dialog .row { display: flex; gap: 12px; justify-content: flex-end; margin-top: 1rem; }
 
-  .music-control {
+  .timer-toggle {
     position: fixed;
     bottom: 20px;
-    left: 20px;
-    background: rgba(245,240,232,0.95);
-    border-radius: 50px;
-    padding: 8px 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    box-shadow: var(--shadow);
-    z-index: 100;
+    right: 20px;
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+    transition: all 0.2s;
+    z-index: 100;
+    color: var(--gold);
   }
-  .music-control:hover { transform: scale(1.05); box-shadow: var(--shadow-hover); }
-  .music-control-icon { font-size: 20px; }
-  .music-control-text { font-size: 11px; font-weight: 600; color: var(--text-dark); }
-
-  ::-webkit-scrollbar { width: 8px; }
-  ::-webkit-scrollbar-track { background: var(--pastel-lavender); border-radius: 10px; }
-  ::-webkit-scrollbar-thumb { background: var(--dark-bg); border-radius: 10px; }
+  .timer-toggle:hover { transform: scale(1.1); border-color: var(--gold-light); }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition: none !important; animation: none !important; }
     .flipper { transition: none; }
   }
-
-  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
 </style>
 </head>
 <body>
 
 <a href="#main" class="skip">Saltar al contenido</a>
 
-<div class="music-control" id="music-control">
-  <span class="music-control-icon" id="music-icon">🎵</span>
-  <span class="music-control-text" id="music-text">Música ON</span>
-</div>
-
 <main id="main">
   <header class="header">
-    <svg class="header-logo" viewBox="0 0 64 64" aria-hidden="true">
-      <defs>
-        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#E8B4B8"/>
-          <stop offset="1" stop-color="#C4B4E8"/>
-        </linearGradient>
-      </defs>
-      <circle cx="32" cy="32" r="30" fill="none" stroke="url(#g)" stroke-width="2"/>
-      <path d="M32 48 C 18 38, 14 28, 22 22 C 27 19, 32 22, 32 28 C 32 22, 37 19, 42 22 C 50 28, 46 38, 32 48 Z" fill="url(#g)" opacity="0.9"/>
-    </svg>
-    <h1 id="game-title">Alejandro &amp; Alejandra</h1>
-    <p><span id="total-count">300</span> preguntas · juego de cartas</p>
+    <div class="logo-container">
+      <div class="header-logo">
+        <span>❤️</span>
+      </div>
+    </div>
+    <h1>NUESTRO JUEGO DE CARTAS</h1>
+    <div class="subtitle">✦ CONTIGO FOREVER ✦</div>
+    <p><span id="total-count">300</span> cartas · momentos inolvidables</p>
   </header>
 
-  <div class="stats-panel">
-    <div class="stat-item">
-      <div class="stat-label">🏆 Racha actual</div>
-      <div class="stat-value" id="current-streak">0</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-label">⭐ Mejor racha</div>
-      <div class="stat-value" id="best-streak">0</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-label">📊 Total respondidas</div>
-      <div class="stat-value" id="total-answered">0</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-label">🏅 Logros</div>
-      <div class="stat-value" id="achievements-count">0</div>
-      <div class="stat-badge" id="next-achievement">✨</div>
-    </div>
-  </div>
-
-  <div class="ornament" aria-hidden="true">✦ ─── ✦ ─── ✦</div>
+  <div class="ornament" aria-hidden="true">✦ ─── ✧ ─── ✦ ─── ✧ ─── ✦</div>
 
   <section class="scoreboard" aria-label="Marcador">
-    <button class="score-card" id="card-p1" type="button" aria-label="Editar nombre del jugador 1">
+    <button class="score-card" id="card-p1" type="button">
       <div class="score-name" id="name-p1">Alejandro</div>
       <div class="score-num" id="score-p1" aria-live="polite">0</div>
     </button>
-    <button class="score-card" id="card-p2" type="button" aria-label="Editar nombre del jugador 2">
+    <button class="score-card" id="card-p2" type="button">
       <div class="score-name" id="name-p2">Alejandra</div>
       <div class="score-num" id="score-p2" aria-live="polite">0</div>
     </button>
   </section>
 
-  <p class="turn-label" aria-live="polite">Turno de: <span id="turn-name">Alejandro</span></p>
-
-  <div style="text-align: center;">
-    <div class="timer-container">
-      <span class="timer-label">⏱️ Tiempo para responder</span>
-      <span class="timer-value" id="timer-value">60</span>
-    </div>
+  <div class="timer-container">
+    <div class="timer-bar" id="timer-bar" style="width: 100%"></div>
+    <div class="timer-text" id="timer-text">⏱️ 60 SEGUNDOS</div>
   </div>
+
+  <p class="turn-label" aria-live="polite">🎴 TURNO DE: <span id="turn-name">Alejandro</span></p>
 
   <div class="filter-row" id="filter-row" role="group" aria-label="Filtrar categorías"></div>
 
@@ -457,902 +579,822 @@
   <div class="actions" id="actions"></div>
 
   <div class="toolbar">
-    <button class="btn" id="btn-prev" type="button" aria-label="Ver carta anterior">↶ Anterior</button>
-    <button class="btn" id="btn-add" type="button">+ Añadir pregunta</button>
-    <button class="btn" id="btn-reset" type="button">Reiniciar partida</button>
-    <button class="btn" id="btn-mute" type="button" aria-pressed="false">🔊 SFX</button>
+    <button class="btn btn-secondary" id="btn-prev" type="button">↶ ANTERIOR</button>
+    <button class="btn btn-secondary" id="btn-add" type="button">✧ AÑADIR CARTA</button>
+    <button class="btn btn-secondary" id="btn-reset" type="button">⟳ REINICIAR</button>
+    <button class="btn btn-secondary" id="btn-mute" type="button">🔊 SONIDO</button>
   </div>
 </main>
 
+<button class="timer-toggle" id="timer-toggle" title="Activar/Desactivar temporizador">⏱️</button>
+
 <dialog id="dlg-name">
   <form method="dialog">
-    <h2>Editar nombre</h2>
+    <h2>✧ EDITAR NOMBRE ✧</h2>
     <label for="name-input">Nombre del jugador</label>
     <input id="name-input" maxlength="20" required>
     <div class="row">
-      <button class="btn" value="cancel" type="submit">Cancelar</button>
-      <button class="btn btn-primary" value="ok" id="name-ok" type="submit">Guardar</button>
+      <button class="btn btn-secondary" value="cancel" type="submit">CANCELAR</button>
+      <button class="btn btn-primary" value="ok" type="submit">GUARDAR</button>
     </div>
   </form>
 </dialog>
 
 <dialog id="dlg-add">
   <form method="dialog">
-    <h2>Nueva pregunta</h2>
+    <h2>✧ NUEVA CARTA ✧</h2>
     <label for="cat-input">Categoría</label>
     <select id="cat-input">
       <option value="recuerdo">Recuerdo</option>
       <option value="picante">Picante</option>
       <option value="divertida">Divertida</option>
       <option value="profunda">Profunda</option>
+      <option value="reto">Reto 🔥</option>
     </select>
-    <label for="q-input">Pregunta</label>
-    <textarea id="q-input" maxlength="280" required></textarea>
+    <label for="q-input">Pregunta o Reto</label>
+    <textarea id="q-input" maxlength="280" required placeholder="Escribe tu pregunta o reto personalizado..."></textarea>
     <div class="row">
-      <button class="btn" value="cancel" type="submit">Cancelar</button>
-      <button class="btn btn-primary" value="ok" id="add-ok" type="submit">Añadir</button>
+      <button class="btn btn-secondary" value="cancel" type="submit">CANCELAR</button>
+      <button class="btn btn-primary" value="ok" type="submit">AÑADIR</button>
     </div>
   </form>
 </dialog>
 
 <script>
-'use strict';
+(function() {
+  'use strict';
 
-class BackgroundMusic {
-  constructor() {
-    this.audioContext = null;
-    this.isPlaying = false;
-    this.gainNode = null;
-    this.oscillators = [];
-    this.currentMelody = 0;
-    this.timeoutId = null;
+  const RETOS = [
+    {cat:'reto',q:'Dame un beso donde más te guste de mi cuerpo'},
+    {cat:'reto',q:'Cuéntame tu fantasía más secreta'},
+    {cat:'reto',q:'Quítame una prenda con los dientes'},
+    {cat:'reto',q:'Baila pegadito a mí por 30 segundos'},
+    {cat:'reto',q:'Susúrrame algo al oído que me ponga rojo/a'},
+    {cat:'reto',q:'Hazme un masaje en los hombros por 1 minuto'},
+    {cat:'reto',q:'Dame un beso en el cuello muy despacio'},
+    {cat:'reto',q:'Cuéntame qué harías si estuviéramos solos ahora mismo'},
+    {cat:'reto',q:'Muerde suavemente mi labio inferior'},
+    {cat:'reto',q:'Describe con una palabra cómo huelo'},
+    {cat:'reto',q:'Hazme una caricia prohibida por 10 segundos'},
+    {cat:'reto',q:'Dame un beso apasionado de 10 segundos'},
+    {cat:'reto',q:'Susúrrame tres cosas que te gustaría hacer conmigo'},
+    {cat:'reto',q:'Masajea mis pies por 2 minutos'},
+    {cat:'reto',q:'Bésame donde más te guste que te bese'},
+    {cat:'reto',q:'Cuéntame tu posición favorita en la intimidad'},
+    {cat:'reto',q:'Hazme una declaración atrevida al oído'},
+    {cat:'reto',q:'Abrázame por detrás y susúrrame algo dulce'},
+    {cat:'reto',q:'Dame un beso en cada dedo de mi mano'},
+    {cat:'reto',q:'Cuéntame qué ropa interior te gustaría verme usar'},
+    {cat:'reto',q:'Hazme un cumplido picante'},
+    {cat:'reto',q:'Bésame como si fuera la última vez'},
+    {cat:'reto',q:'Acaríciame la pierna mientras me miras a los ojos'},
+    {cat:'reto',q:'Cuéntame tu sueño húmedo más reciente conmigo'},
+    {cat:'reto',q:'Hazme un striptease de 30 segundos'},
+    {cat:'reto',q:'Dame un beso en el pecho o zona cercana'},
+    {cat:'reto',q:'Susúrrame qué harías si tuviéramos una noche de hotel'},
+    {cat:'reto',q:'Masajea mi espalda baja por 1 minuto'},
+    {cat:'reto',q:'Bésame mientras me tomas de la cintura'},
+    {cat:'reto',q:'Cuéntame qué parte de mi cuerpo te excita más'},
+    {cat:'reto',q:'Hazme una caricia detrás de la oreja'},
+    {cat:'reto',q:'Dame un mordisco suave donde quieras'},
+    {cat:'reto',q:'Baila sensual conmigo sin música'},
+    {cat:'reto',q:'Cuéntame tu posición favorita y por qué'},
+    {cat:'reto',q:'Hazme una promesa atrevida para esta noche'},
+    {cat:'reto',q:'Bésame con lengua muy lentamente'},
+    {cat:'reto',q:'Acaríciame el cabello mientras me susurras algo'},
+    {cat:'reto',q:'Cuéntame qué te gusta que haga durante el sexo'},
+    {cat:'reto',q:'Hazme un masaje en los muslos por 30 segundos'},
+    {cat:'reto',q:'Dame un beso en el ombligo'},
+    {cat:'reto',q:'Susúrrame una orden atrevida'},
+    {cat:'reto',q:'Imita como gemirías conmigo'},
+    {cat:'reto',q:'Cuéntame dónde es el lugar más atrevido donde has pensado en mí'},
+    {cat:'reto',q:'Hazme un masaje en las manos con aceite imaginario'},
+    {cat:'reto',q:'Bésame en la nariz y luego en los labios'},
+    {cat:'reto',q:'Describe cómo sería nuestra primera vez de nuevo'},
+    {cat:'reto',q:'Acaríciame la nuca por 15 segundos'},
+    {cat:'reto',q:'Cuéntame una palabra clave que activaría tu deseo'},
+    {cat:'reto',q:'Hazme un cumplido sobre mi desempeño en la cama'},
+    {cat:'reto',q:'Dame un beso con mucha pasión y ruido'},
+    {cat:'reto',q:'Susúrrame algo que te de vergüenza decir en voz alta'},
+    {cat:'reto',q:'Hazme una pregunta picante que nunca te hayas atrevido'},
+    {cat:'reto',q:'Bésame en el cuello mientras me abrazas fuerte'},
+    {cat:'reto',q:'Cuéntame qué te gustaría probar nuevo conmigo'},
+    {cat:'reto',q:'Hazme un masaje con los pulgares en la espalda baja'},
+    {cat:'reto',q:'Dame un beso en cada pestaña'},
+    {cat:'reto',q:'Acaríciame por encima de la ropa donde más te guste'},
+    {cat:'reto',q:'Cuéntame si has fantaseado conmigo hoy'},
+    {cat:'reto',q:'Hazme reír y luego bésame'},
+    {cat:'reto',q:'Susúrrame qué ropa te pondrías para una cita romántica'},
+    {cat:'reto',q:'Baila muy pegadito a mí por 1 minuto'},
+    {cat:'reto',q:'Dame un beso en la frente y luego uno apasionado'},
+    {cat:'reto',q:'Cuéntame qué es lo que más te atrae físicamente de mí'},
+    {cat:'reto',q:'Hazme una caricia en la mejilla muy lento'},
+    {cat:'reto',q:'Bésame y luego aléjate lentamente sonriendo'},
+    {cat:'reto',q:'Acaríciame el lóbulo de la oreja con tus labios'},
+    {cat:'reto',q:'Cuéntame qué harías si te dijera "esta noche es toda tuya"'},
+    {cat:'reto',q:'Hazme un cumplido sobre cómo beso'},
+    {cat:'reto',q:'Dame un masaje en los hombros por 2 minutos'},
+    {cat:'reto',q:'Susúrrame algo que te haga sentir deseado/a'},
+    {cat:'reto',q:'Bésame mientras me tomas de la mano'},
+    {cat:'reto',q:'Cuéntame tu mayor fetiche o fantasía'},
+    {cat:'reto',q:'Hazme una declaración de deseo'},
+    {cat:'reto',q:'Acarícieme la espalda con tus uñas suavemente'},
+    {cat:'reto',q:'Dame un beso en el hombro y luego en el cuello'},
+    {cat:'reto',q:'Baila solo para mí por 20 segundos'},
+    {cat:'reto',q:'Cuéntame qué cambiarías de nuestra intimidad'},
+    {cat:'reto',q:'Hazme una pregunta sobre mis gustos en la cama'},
+    {cat:'reto',q:'Bésame como si fuera nuestra primera vez'},
+    {cat:'reto',q:'Acaríciame la pierna muy lentamente subiendo'},
+    {cat:'reto',q:'Susúrrame tres apodos cachondos que te gustaría escuchar'},
+    {cat:'reto',q:'Dame un abrazo muy fuerte y apretado por 15 segundos'},
+    {cat:'reto',q:'Cuéntame dónde te gusta que te bese más'},
+    {cat:'reto',q:'Hazme una promesa para nuestra próxima vez íntima'},
+    {cat:'reto',q:'Bésame en el cuello mientras acaricias mi espalda'},
+    {cat:'reto',q:'Masajea mis manos mientras me miras a los ojos'},
+    {cat:'reto',q:'Cuéntame qué harías en una cita sorpresa muy picante'},
+    {cat:'reto',q:'Acaríciame con un solo dedo por el brazo'},
+    {cat:'reto',q:'Dame un beso con mucho contacto visual antes y después'},
+    {cat:'reto',q:'Susúrrame cuántas ganas tenías de este momento'},
+    {cat:'reto',q:'Hazme reír y luego dame un beso picante'},
+    {cat:'reto',q:'Báilame muy cerca hasta que nuestros cuerpos se toquen'},
+    {cat:'reto',q:'Cuéntame qué te gusta que te diga durante el sexo'},
+    {cat:'reto',q:'Acarícieme el pelo mientras me dices algo bonito'},
+    {cat:'reto',q:'Dame el mejor beso que se te ocurra ahora mismo'},
+    {cat:'reto',q:'Susúrrame qué posición te pone más cachondo/a'},
+    {cat:'reto',q:'Hazme un masaje en los pies por 3 minutos'},
+    {cat:'reto',q:'Bésame en el estómago y sonríe'},
+    {cat:'reto',q:'Cuéntame qué harías si ganáramos la lotería romántica'},
+    {cat:'reto',q:'Acarícieme la cara y luego bésame suavemente'},
+    {cat:'reto',q:'Hazme una pregunta sobre mis sueños húmedos contigo'}
+  ];
+
+  const DEFAULT_CARDS = [
+    {cat:'recuerdo',q:'¿Cuál fue tu primera impresión de mí cuando nos conocimos?'},
+    {cat:'recuerdo',q:'¿Qué fue lo que más te gustó de nuestra primera cita?'},
+    {cat:'recuerdo',q:'¿En qué momento supiste que querías estar conmigo?'},
+    {cat:'recuerdo',q:'¿Cuál ha sido tu momento favorito que hemos vivido juntos?'},
+    {cat:'recuerdo',q:'¿Qué canción te recuerda a nosotros y por qué?'},
+    {cat:'recuerdo',q:'¿Cuál ha sido el viaje o salida que más disfrutaste juntos?'},
+    {cat:'recuerdo',q:'¿Hay algo que haya dicho en algún momento que nunca olvidarás?'},
+    {cat:'recuerdo',q:'¿Qué detalle mío te sorprendió gratamente al conocerme?'},
+    {cat:'recuerdo',q:'¿Cuál fue la primera foto que nos tomamos juntos y dónde fue?'},
+    {cat:'recuerdo',q:'¿Recuerdas qué ropa llevaba yo el día que nos conocimos?'},
+    {cat:'recuerdo',q:'¿Cuál fue la primera película o serie que vimos juntos?'},
+    {cat:'recuerdo',q:'¿Cuál fue la primera comida que compartimos?'},
+    {cat:'recuerdo',q:'¿Hubo un momento en que casi no seguimos juntos? ¿Cómo lo recuerdas?'},
+    {cat:'recuerdo',q:'¿Cuál fue el regalo más especial que me has dado o recibido de mí?'},
+    {cat:'recuerdo',q:'¿Qué celebración juntos ha sido la más memorable para ti?'},
+    {cat:'recuerdo',q:'¿Cuándo fue la primera vez que me dijiste "te quiero"?'},
+    {cat:'recuerdo',q:'¿Cuál fue la primera canción que bailamos juntos?'},
+    {cat:'recuerdo',q:'¿Recuerdas nuestra primera discusión? ¿Cómo la resolvimos?'},
+    {cat:'recuerdo',q:'¿Cuál es el chiste interno o palabra especial que solo entendemos nosotros?'},
+    {cat:'recuerdo',q:'¿Qué lugar tiene un significado especial para los dos?'},
+    {cat:'recuerdo',q:'¿Cuál fue la aventura más loca que hemos vivido juntos?'},
+    {cat:'recuerdo',q:'¿Qué viaje soñado hemos planeado y aún no hemos hecho?'},
+    {cat:'recuerdo',q:'¿Cuál es la tradición o ritual que más disfrutas de los que tenemos juntos?'},
+    {cat:'recuerdo',q:'¿Qué cosa aprendiste de mí que no sabías antes de conocerme?'},
+    {cat:'recuerdo',q:'¿Cuál fue la noche más divertida que hemos tenido juntos?'},
+    {cat:'recuerdo',q:'¿Recuerdas la primera vez que conociste a mi familia? ¿Cómo te sentiste?'},
+    {cat:'recuerdo',q:'¿Cuál fue el momento en que más orgulloso(a) te sentiste de mí?'},
+    {cat:'recuerdo',q:'¿Hay alguna promesa que me hiciste y que aún recuerdas con cariño?'},
+    {cat:'recuerdo',q:'¿Qué cosa de nuestra relación al principio te parecía rara y ahora te encanta?'},
+    {cat:'recuerdo',q:'¿Cuál fue la primera sorpresa que me preparaste o que yo te preparé?'},
+    {cat:'recuerdo',q:'¿Cuál es el apodo que me pusiste o que yo te puse?'},
+    {cat:'recuerdo',q:'¿Qué fue lo primero que me dijiste o lo primero que te dije?'},
+    {cat:'recuerdo',q:'¿Cuál fue el cumpleaños más especial que celebramos juntos?'},
+    {cat:'recuerdo',q:'¿Recuerdas la primera vez que nos quedamos dormidos juntos?'},
+    {cat:'recuerdo',q:'¿Qué notaste de mí antes de que empezáramos a salir?'},
+    {cat:'recuerdo',q:'¿Cuál ha sido el día más difícil que hemos superado juntos?'},
+    {cat:'recuerdo',q:'¿Qué objeto guardo o guardas como recuerdo de un momento nuestro?'},
+    {cat:'recuerdo',q:'¿Cuándo fue la primera vez que me defendiste ante alguien?'},
+    {cat:'recuerdo',q:'¿Cuál fue la primera vez que me hiciste reír hasta llorar?'},
+    {cat:'recuerdo',q:'¿Recuerdas cuánto tiempo tardamos en darnos nuestro primer beso?'},
+    {cat:'recuerdo',q:'¿Cuál fue el momento en que sentiste que realmente me conocías?'},
+    {cat:'recuerdo',q:'¿Qué cosa del pasado quisieramos revivir juntos si pudiéramos?'},
+    {cat:'recuerdo',q:'¿Cuándo fue la primera vez que lloraste frente a mí?'},
+    {cat:'recuerdo',q:'¿Cuál fue el primer viaje en carro o transporte largo que hicimos juntos?'},
+    {cat:'recuerdo',q:'¿Qué momento de silencio compartido recuerdas con especial cariño?'},
+    {cat:'recuerdo',q:'¿Recuerdas la primera vez que cocinamos juntos? ¿Cómo resultó?'},
+    {cat:'recuerdo',q:'¿Cuál fue el mensaje de texto más largo o especial que me enviaste?'},
+    {cat:'recuerdo',q:'¿Hubo algún momento en que me viste y pensaste "me gusta mucho esta persona"?'},
+    {cat:'recuerdo',q:'¿Cuál es el recuerdo favorito que tienes de nosotros este último año?'},
+    {cat:'recuerdo',q:'¿Qué historia de nosotros le contarías a nuestros hijos o amigos?'},
+    {cat:'picante',q:'¿Cuál es tu fantasía favorita que aún no le has contado a tu pareja?'},
+    {cat:'picante',q:'¿Dónde está el lugar más inesperado donde te gustaría tener un momento romántico?'},
+    {cat:'picante',q:'¿Qué parte de mi cuerpo es tu favorita y por qué?'},
+    {cat:'picante',q:'¿Cuál es la cosa más atrevida que harías conmigo si pudiéramos?'},
+    {cat:'picante',q:'¿Hay algo que siempre hayas querido probar pero te ha dado pena pedir?'},
+    {cat:'picante',q:'¿Qué es lo que más te pone nervioso(a) de mí en un buen sentido?'},
+    {cat:'picante',q:'¿Cuál es tu recuerdo más íntimo favorito de nosotros dos?'},
+    {cat:'picante',q:'¿Qué prenda o look mío te parece irresistible?'},
+    {cat:'picante',q:'¿Qué canción te pone de humor romántico y por qué?'},
+    {cat:'picante',q:'¿Cuál es el momento del día en que más me deseas?'},
+    {cat:'picante',q:'¿Qué harías si tuviéramos una noche completamente solos sin interrupciones?'},
+    {cat:'picante',q:'¿Hay una película o escena de película que te haya puesto ideas en la cabeza?'},
+    {cat:'picante',q:'¿Cuál es el cumplido que más te gusta recibir de mí?'},
+    {cat:'picante',q:'¿Qué cosa pequeña que hago te parece increíblemente seductora?'},
+    {cat:'picante',q:'¿Si pudieras elegir una noche perfecta romántica, cómo sería?'},
+    {cat:'picante',q:'¿Cuál sería tu escenario soñado para una escapada de pareja?'},
+    {cat:'picante',q:'¿Qué cosa mía te vuelve loco(a) aunque no lo admitas siempre?'},
+    {cat:'picante',q:'¿Hay algo que quieras que haga más seguido para hacerte sentir deseado(a)?'},
+    {cat:'picante',q:'¿Cuál es tu parte favorita de cuando nos reencontramos después de un tiempo separados?'},
+    {cat:'picante',q:'¿Qué tipo de mensaje tuyo me sacaría una sonrisa tonta en cualquier momento?'},
+    {cat:'picante',q:'¿Hay una fantasía de película que te gustaría recrear conmigo?'},
+    {cat:'picante',q:'¿Qué cosa mía te distrae cuando intentas concentrarte?'},
+    {cat:'picante',q:'¿Cuál es el beso que más recuerdas de los que nos hemos dado?'},
+    {cat:'picante',q:'¿Qué harías si te digo que esta noche puedes pedir lo que quieras?'},
+    {cat:'picante',q:'¿Hay algo que siempre quisiste decirme pero nunca encontraste el momento?'},
+    {cat:'picante',q:'¿Cuál es tu forma favorita de que te despierte por la mañana?'},
+    {cat:'picante',q:'¿Qué cosa hace que inmediatamente me quieras dar un beso?'},
+    {cat:'picante',q:'¿Cuál es la temperatura perfecta de una noche romántica con nosotros?'},
+    {cat:'picante',q:'¿Qué harías si de repente tuviéramos una semana de vacaciones solo para los dos?'},
+    {cat:'picante',q:'¿Hay una palabra o frase que te encanta escucharme decir?'},
+    {cat:'picante',q:'¿Cuál sería el plan perfecto para celebrar nuestro aniversario?'},
+    {cat:'picante',q:'¿Qué gesto romántico mío recuerdas que te dejó sin palabras?'},
+    {cat:'picante',q:'¿Cuál es la forma en que más disfrutas de mi compañía?'},
+    {cat:'picante',q:'¿Qué cosa te gustaría que hiciéramos más seguido juntos en privado?'},
+    {cat:'picante',q:'¿Cuándo fue la última vez que te sorprendí y cómo te sentiste?'},
+    {cat:'picante',q:'¿Hay algún lugar de mi cuerpo que te encante tocar o abrazar?'},
+    {cat:'picante',q:'¿Qué harías si pudieras planear una sorpresa para mí esta semana?'},
+    {cat:'picante',q:'¿Cuál es el perfume o aroma mío que más te gusta?'},
+    {cat:'picante',q:'¿Qué cosa mía extrañas más cuando estamos separados?'},
+    {cat:'picante',q:'¿Cuál es el tipo de abrazo tuyo que más me gusta y por qué?'},
+    {cat:'picante',q:'¿Cuándo fue la última vez que te hice ruborizar o sonrojarte?'},
+    {cat:'picante',q:'¿Hay algo de ti que crees que me vuelve loco(a) pero no me has preguntado?'},
+    {cat:'picante',q:'¿Cuál sería la dedicatoria perfecta de una canción de amor para mí?'},
+    {cat:'picante',q:'¿Qué escenario romántico te imaginas que aún no hemos vivido?'},
+    {cat:'picante',q:'¿Qué cosa tuya me parece más atractiva cuando no te das cuenta?'},
+    {cat:'picante',q:'¿Cuándo sientes que nuestra conexión es más intensa?'},
+    {cat:'picante',q:'¿Hay una prenda de ropa mía que te encante especialmente?'},
+    {cat:'picante',q:'¿Qué harías conmigo si tuvieras una tarde libre sin planes?'},
+    {cat:'picante',q:'¿Cuál es la cosa más romántica que alguien te haya hecho jamás?'},
+    {cat:'picante',q:'¿Hay algo de nuestra intimidad que te gustaría que cambiara o mejorar juntos?'},
+    {cat:'divertida',q:'Si fuéramos personajes de una película, ¿quiénes seríamos?'},
+    {cat:'divertida',q:'¿Cuál es el hábito más raro del otro que encuentras adorable?'},
+    {cat:'divertida',q:'Si tuviéramos que sobrevivir en una isla desierta, ¿quién sería más inútil?'},
+    {cat:'divertida',q:'¿A cuál animal te recuerda más tu pareja y por qué?'},
+    {cat:'divertida',q:'Si pudieras cambiarle un solo hábito a tu pareja, ¿cuál sería?'},
+    {cat:'divertida',q:'¿Cuál sería nuestro superpoder si fuéramos un equipo de superhéroes?'},
+    {cat:'divertida',q:'¿En qué reality show crees que participaríamos mejor como pareja?'},
+    {cat:'divertida',q:'Si tuvieras que describirme con tres emojis, ¿cuáles serían?'},
+    {cat:'divertida',q:'¿Cuál sería nuestro nombre de pareja si fuéramos famosos?'},
+    {cat:'divertida',q:'Si nuestra relación fuera una serie, ¿cómo se llamaría y de qué género sería?'},
+    {cat:'divertida',q:'¿Cuál es la excusa más absurda que me has dado para algo?'},
+    {cat:'divertida',q:'Si intercambiáramos cuerpos por un día, ¿qué harías primero?'},
+    {cat:'divertida',q:'¿Cuál es la cara más graciosa que me haces y cuándo la sacas?'},
+    {cat:'divertida',q:'Si fuéramos a un karaoke, ¿qué canción elegiría cada uno?'},
+    {cat:'divertida',q:'¿Cuál es el apodo más ridículo que podrías ponerme?'},
+    {cat:'divertida',q:'¿Qué plato intentarías cocinar para impresionarme aunque se te queme?'},
+    {cat:'divertida',q:'Si ganáramos la lotería mañana, ¿qué haríamos primero?'},
+    {cat:'divertida',q:'¿Cuál es la película que definitivamente NO podríamos ver juntos sin pelear?'},
+    {cat:'divertida',q:'Si fuéramos personajes de videojuego, ¿qué rol tendría cada uno?'},
+    {cat:'divertida',q:'¿Cuál es el momento más embarazoso que hemos vivido juntos?'},
+    {cat:'divertida',q:'Si tuviéramos una mascota exótica, ¿qué animal sería y cómo se llamaría?'},
+    {cat:'divertida',q:'¿Cuál sería nuestro restaurante si abriéramos uno juntos?'},
+    {cat:'divertida',q:'¿Qué show o canal de YouTube seríamos si fuéramos creadores de contenido?'},
+    {cat:'divertida',q:'¿Cuál es la discusión más tonta que hemos tenido?'},
+    {cat:'divertida',q:'Si pudiéramos teleportarnos a cualquier lugar ahora mismo, ¿a dónde iríamos?'},
+    {cat:'divertida',q:'¿Cuál es la manía tuya que más me divierte aunque no lo admita?'},
+    {cat:'divertida',q:'Si fuéramos personajes históricos, ¿quiénes seríamos?'},
+    {cat:'divertida',q:'¿Qué talento secreto mío te sorprendería descubrir?'},
+    {cat:'divertida',q:'¿Cuál es la cosa más impulsiva que hemos hecho juntos?'},
+    {cat:'divertida',q:'Si organizaras una fiesta temática para mí, ¿cuál sería el tema?'},
+    {cat:'divertida',q:'¿Cuál es la comida que definitivamente NO compartiríamos?'},
+    {cat:'divertida',q:'Si tuviéramos que hacer un dueto musical, ¿qué canción elegiríamos?'},
+    {cat:'divertida',q:'¿Cuál de los dos sería el villano y cuál el héroe en una historia de acción?'},
+    {cat:'divertida',q:'¿Qué profesión totalmente distinta a la tuya me imaginarías haciendo?'},
+    {cat:'divertida',q:'Si pudiéramos comer solo una comida por el resto de la vida, ¿cuál elegiría cada uno?'},
+    {cat:'divertida',q:'¿Cuál es la peor moda o estilo que cualquiera de los dos ha tenido?'},
+    {cat:'divertida',q:'Si nuestro amor fuera un sabor de helado, ¿cuál sería?'},
+    {cat:'divertida',q:'¿Cuál de los dos se perdería primero en una ciudad desconocida?'},
+    {cat:'divertida',q:'¿Qué haríamos si nos quedamos atrapados en un elevador por dos horas?'},
+    {cat:'divertida',q:'¿Cuál es el meme que mejor me describe?'},
+    {cat:'divertida',q:'Si fuéramos a un escape room, ¿quién sería el que entra en pánico?'},
+    {cat:'divertida',q:'¿Cuál es el plan más absurdo que hemos hecho y terminó bien?'},
+    {cat:'divertida',q:'¿A cuál personaje de dibujos animados te parezco más y por qué?'},
+    {cat:'divertida',q:'¿Qué deporte ridículo inventaríamos si pudiéramos?'},
+    {cat:'divertida',q:'Si pudieras programarme un día perfecto de actividades, ¿cómo sería?'},
+    {cat:'divertida',q:'¿Cuál es el tic o muletilla mía que repito sin darme cuenta?'},
+    {cat:'divertida',q:'¿Qué harías si me vieras actuar en una obra de teatro?'},
+    {cat:'divertida',q:'¿Cuál de los dos tiene peor sentido de la orientación?'},
+    {cat:'divertida',q:'¿Qué canción te sale automáticamente si te pregunto cuál me describe?'},
+    {cat:'divertida',q:'¿Si fuéramos a una feria, cuál sería la primera atracción en la que nos subiríamos?'},
+    {cat:'profunda',q:'¿Cuál es el sueño que más quieres cumplir en los próximos años?'},
+    {cat:'profunda',q:'¿Qué es lo que más valoras de nuestra relación?'},
+    {cat:'profunda',q:'¿Hay algo que quisieras que supiera de ti pero nunca has encontrado cómo decirlo?'},
+    {cat:'profunda',q:'¿Cuál ha sido el momento en que más me has necesitado?'},
+    {cat:'profunda',q:'¿Qué es lo que más admiras de mí como persona?'},
+    {cat:'profunda',q:'¿Cómo imaginas que será nuestra vida juntos en 10 años?'},
+    {cat:'profunda',q:'¿Cuál es el miedo que más te cuesta compartir conmigo?'},
+    {cat:'profunda',q:'¿Qué cosa pequeña que hago te hace sentir muy amado(a)?'},
+    {cat:'profunda',q:'¿Qué aprendiste de ti mismo(a) desde que estamos juntos?'},
+    {cat:'profunda',q:'¿Hay algo que cambiarías de la forma en que nos relacionamos?'},
+    {cat:'profunda',q:'¿Cuál es la decisión más importante que hemos tomado juntos?'},
+    {cat:'profunda',q:'¿Qué significa para ti "sentirte amado(a)" en el día a día?'},
+    {cat:'profunda',q:'¿Hay una versión de ti que sientes que solo yo conozco?'},
+    {cat:'profunda',q:'¿Qué es lo que más te da miedo perder en esta relación?'},
+    {cat:'profunda',q:'¿Cuál es la lección más grande que me has dado sin darte cuenta?'},
+    {cat:'profunda',q:'¿Hay algo de tu pasado que aún influye en cómo te relacionas conmigo?'},
+    {cat:'profunda',q:'¿Cuál es la cosa que más te cuesta pedirme pero que necesitas?'},
+    {cat:'profunda',q:'¿Qué valor nuestro crees que es el más importante para que funcionemos?'},
+    {cat:'profunda',q:'¿Cómo te gustaría que te apoyara más en tus metas?'},
+    {cat:'profunda',q:'¿Qué versión de ti mismo(a) quieres ser en cinco años?'},
+    {cat:'profunda',q:'¿Hay algo que hayas sacrificado por esta relación y que no me has contado?'},
+    {cat:'profunda',q:'¿Cuándo sientes que nuestra comunicación es mejor y cuándo más difícil?'},
+    {cat:'profunda',q:'¿Qué es lo que más te hace sentir seguro(a) en nuestra relación?'},
+    {cat:'profunda',q:'¿Cuál es el proyecto de vida que más quieres compartir conmigo?'},
+    {cat:'profunda',q:'¿Qué cosa de nuestra relación crees que nos hace únicos?'},
+    {cat:'profunda',q:'¿Hay algo que hayas aprendido de tus relaciones anteriores que aplicas con nosotros?'},
+    {cat:'profunda',q:'¿Cuál es la conversación más difícil que hemos tenido y cómo crees que nos afectó?'},
+    {cat:'profunda',q:'¿Qué parte de mi forma de ser te ha ayudado a crecer?'},
+    {cat:'profunda',q:'¿Cuándo sientes que soy tu mejor versión gracias a ti?'},
+    {cat:'profunda',q:'¿Hay algo que no me hayas dicho por miedo a herirme?'},
+    {cat:'profunda',q:'¿Qué crees que le falta a nuestra relación para ser aún más fuerte?'},
+    {cat:'profunda',q:'¿Cuál es el mayor reto que crees que enfrentaremos en el futuro?'},
+    {cat:'profunda',q:'¿Qué quieres que las personas que nos conocen digan de nosotros como pareja?'},
+    {cat:'profunda',q:'¿Hay algo que ya perdonaste pero que aún te cuesta soltar?'},
+    {cat:'profunda',q:'¿Cuál es la forma en que más demuestro mi amor sin palabras?'},
+    {cat:'profunda',q:'¿Qué hábito o rutina nuestra sientes que nos une más?'},
+    {cat:'profunda',q:'¿Cuál es la cosa más valiente que me has visto hacer?'},
+    {cat:'profunda',q:'¿Cuándo sientes que eres completamente tú mismo(a) conmigo?'},
+    {cat:'profunda',q:'¿Qué le pedirías al universo para nuestra relación si pudieras?'},
+    {cat:'profunda',q:'¿Hay algo de mi personalidad que al principio no entendías y ahora amas?'},
+    {cat:'profunda',q:'¿Cuál es la forma en que más quieres que te recuerde dentro de 20 años?'},
+    {cat:'profunda',q:'¿Qué crees que nos unió en el momento más importante?'},
+    {cat:'profunda',q:'¿Cuál es la promesa tácita que sientes que nos hacemos todos los días?'},
+    {cat:'profunda',q:'¿Qué parte de ti sientes que he ayudado a sanar?'},
+    {cat:'profunda',q:'¿Hay una meta que tienes y que nunca me has contado del todo?'},
+    {cat:'profunda',q:'¿Cuándo fue la última vez que me viste y sentiste que te había ido bien en la vida?'},
+    {cat:'profunda',q:'¿Qué cosa de nuestra convivencia diaria te hace más feliz?'},
+    {cat:'profunda',q:'¿Cuál es el legado que quieres dejar juntos como pareja?'},
+    {cat:'profunda',q:'¿Hay algo que solo yo sé de ti y que te alegra que sea así?'},
+    {cat:'profunda',q:'¿Qué significa para ti que sigamos eligiéndonos todos los días?'}
+  ];
+
+  const ALL_BASE_CARDS = [...DEFAULT_CARDS, ...RETOS];
+  const CAT_LABELS = { recuerdo:'RECUERDOS', picante:'PICANTE', divertida:'DIVERTIDA', profunda:'PROFUNDA', reto:'RETOS 🔥' };
+  const STORAGE_KEY = 'cartas-aleja-v5';
+
+  const state = {
+    names: ['Alejandro', 'Alejandra'],
+    scores: [0, 0],
+    turn: 0,
+    filters: { recuerdo: true, picante: true, divertida: true, profunda: true, reto: true },
+    custom: [],
+    deck: [],
+    current: null,
+    history: [],
+    revealed: false,
+    muted: false,
+    timerEnabled: true
+  };
+
+  let timerInterval = null;
+  let timeLeft = 60;
+  let audioCtx = null;
+
+  function save() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        names: state.names, scores: state.scores, turn: state.turn,
+        filters: state.filters, custom: state.custom, muted: state.muted,
+        timerEnabled: state.timerEnabled
+      }));
+    } catch(e) {}
   }
 
-  async init() {
-    if (this.audioContext) return;
-    this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    this.gainNode = this.audioContext.createGain();
-    this.gainNode.gain.value = 0.15;
-    this.gainNode.connect(this.audioContext.destination);
+  function load() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const d = JSON.parse(raw);
+      state.names = d.names || state.names;
+      state.scores = d.scores || state.scores;
+      state.turn = d.turn ?? 0;
+      state.filters = d.filters || state.filters;
+      state.custom = d.custom || [];
+      state.muted = !!d.muted;
+      state.timerEnabled = d.timerEnabled !== undefined ? d.timerEnabled : true;
+    } catch(e) {}
   }
 
-  playMelody() {
-    if (!this.audioContext || !this.isPlaying) return;
-    
-    const melodies = [
-      { notes: [523.25, 587.33, 659.25, 523.25], duration: 0.3 },
-      { notes: [659.25, 698.46, 783.99, 587.33], duration: 0.3 },
-      { notes: [523.25, 523.25, 587.33, 587.33, 659.25, 659.25, 587.33], duration: 0.25 }
-    ];
-    
-    const melody = melodies[this.currentMelody % melodies.length];
-    let time = this.audioContext.currentTime;
-    
-    melody.notes.forEach((freq, i) => {
-      const osc = this.audioContext.createOscillator();
-      const gain = this.audioContext.createGain();
-      osc.type = 'sine';
-      osc.frequency.value = freq;
-      gain.gain.value = 0.1;
-      osc.connect(gain);
-      gain.connect(this.gainNode);
-      osc.start(time + i * melody.duration);
-      gain.gain.exponentialRampToValueAtTime(0.00001, time + (i + 1) * melody.duration);
-      osc.stop(time + (i + 1) * melody.duration);
-      this.oscillators.push(osc);
-    });
-    
-    this.currentMelody++;
-    this.timeoutId = setTimeout(() => this.playMelody(), melody.notes.length * melody.duration * 1000 + 1000);
-  }
+  function allCards() { return [...ALL_BASE_CARDS, ...state.custom]; }
 
-  async start() {
-    if (this.isPlaying) return;
-    await this.init();
-    if (this.audioContext.state === 'suspended') {
-      await this.audioContext.resume();
+  function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
     }
-    this.isPlaying = true;
-    this.playMelody();
+    return a;
   }
 
-  stop() {
-    this.isPlaying = false;
-    if (this.timeoutId) {
-      clearTimeout(this.timeoutId);
-      this.timeoutId = null;
+  function playBeep(freq = 600, dur = 80) {
+    if (state.muted) return;
+    try {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      const o = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      o.frequency.value = freq;
+      o.type = 'sine';
+      g.gain.value = 0.1;
+      o.connect(g);
+      g.connect(audioCtx.destination);
+      o.start();
+      g.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + dur / 1000);
+      o.stop(audioCtx.currentTime + dur / 1000);
+    } catch(e) {}
+    if (navigator.vibrate) navigator.vibrate(20);
+  }
+
+  function stopTimer() {
+    if (timerInterval) {
+      clearInterval(timerInterval);
+      timerInterval = null;
     }
-    this.oscillators.forEach(osc => {
-      try { osc.stop(); } catch(e) {}
-    });
-    this.oscillators = [];
   }
 
-  async toggle() {
-    if (this.isPlaying) {
-      this.stop();
+  function updateTimerDisplay() {
+    const bar = document.getElementById('timer-bar');
+    const text = document.getElementById('timer-text');
+    if (!bar || !text) return;
+    const percentage = (timeLeft / 60) * 100;
+    bar.style.width = percentage + '%';
+    text.textContent = `⏱️ ${timeLeft} SEGUNDOS`;
+    if (timeLeft <= 10) {
+      text.classList.add('timer-warning');
     } else {
-      await this.start();
+      text.classList.remove('timer-warning');
     }
-    return this.isPlaying;
   }
-}
 
-const ACHIEVEMENTS = [
-  { id: 'first_win', name: '🎉 ¡Primer punto!', description: 'Anota tu primer punto', condition: (stats) => stats.totalScore >= 1, icon: '🎯' },
-  { id: 'streak_3', name: '⚡ Racha de 3', description: 'Responde 3 preguntas seguidas', condition: (stats) => stats.currentStreak >= 3, icon: '🔥' },
-  { id: 'streak_5', name: '🌟 Racha de 5', description: 'Responde 5 preguntas seguidas', condition: (stats) => stats.currentStreak >= 5, icon: '⭐' },
-  { id: 'streak_10', name: '🏆 Maestro de rachas', description: 'Alcanza 10 respuestas seguidas', condition: (stats) => stats.currentStreak >= 10, icon: '👑' },
-  { id: 'total_10', name: '📚 Principiante', description: 'Responde 10 preguntas en total', condition: (stats) => stats.totalAnswered >= 10, icon: '📖' },
-  { id: 'total_50', name: '🎓 Experto', description: 'Responde 50 preguntas en total', condition: (stats) => stats.totalAnswered >= 50, icon: '🎓' },
-  { id: 'total_100', name: '💎 Leyenda', description: 'Responde 100 preguntas en total', condition: (stats) => stats.totalAnswered >= 100, icon: '💎' },
-  { id: 'perfect_game', name: '✨ Perfecto', description: 'Responde 5 preguntas sin fallar', condition: (stats) => stats.perfectCount >= 5, icon: '✨' },
-  { id: 'diverse', name: '🌈 Versátil', description: 'Responde una pregunta de cada categoría', condition: (stats) => stats.categoriesUsed.size >= 4, icon: '🌈' }
-];
-
-const DEFAULT_CARDS_BASE = [
-  {cat:'recuerdo',q:'¿Cuál fue tu primera impresión de mí cuando nos conocimos?'},
-  {cat:'recuerdo',q:'¿Qué fue lo que más te gustó de nuestra primera cita?'},
-  {cat:'recuerdo',q:'¿En qué momento supiste que querías estar conmigo?'},
-  {cat:'recuerdo',q:'¿Cuál ha sido tu momento favorito que hemos vivido juntos?'},
-  {cat:'recuerdo',q:'¿Qué canción te recuerda a nosotros y por qué?'},
-  {cat:'recuerdo',q:'¿Cuál ha sido el viaje o salida que más disfrutaste juntos?'},
-  {cat:'recuerdo',q:'¿Hay algo que haya dicho en algún momento que nunca olvidarás?'},
-  {cat:'recuerdo',q:'¿Qué detalle mío te sorprendió gratamente al conocerme?'},
-  {cat:'recuerdo',q:'¿Cuál fue la primera foto que nos tomamos juntos y dónde fue?'},
-  {cat:'recuerdo',q:'¿Recuerdas qué ropa llevaba yo el día que nos conocimos?'},
-  {cat:'recuerdo',q:'¿Cuál fue la primera película o serie que vimos juntos?'},
-  {cat:'recuerdo',q:'¿Cuál fue la primera comida que compartimos?'},
-  {cat:'recuerdo',q:'¿Hubo un momento en que casi no seguimos juntos? ¿Cómo lo recuerdas?'},
-  {cat:'recuerdo',q:'¿Cuál fue el regalo más especial que me has dado o recibido de mí?'},
-  {cat:'recuerdo',q:'¿Qué celebración juntos ha sido la más memorable para ti?'},
-  {cat:'recuerdo',q:'¿Cuándo fue la primera vez que me dijiste "te quiero"?'},
-  {cat:'recuerdo',q:'¿Cuál fue la primera canción que bailamos juntos?'},
-  {cat:'recuerdo',q:'¿Recuerdas nuestra primera discusión? ¿Cómo la resolvimos?'},
-  {cat:'recuerdo',q:'¿Cuál es el chiste interno o palabra especial que solo entendemos nosotros?'},
-  {cat:'recuerdo',q:'¿Qué lugar tiene un significado especial para los dos?'},
-  {cat:'recuerdo',q:'¿Cuál fue la aventura más loca que hemos vivido juntos?'},
-  {cat:'recuerdo',q:'¿Qué viaje soñado hemos planeado y aún no hemos hecho?'},
-  {cat:'recuerdo',q:'¿Cuál es la tradición o ritual que más disfrutas de los que tenemos juntos?'},
-  {cat:'recuerdo',q:'¿Qué cosa aprendiste de mí que no sabías antes de conocerme?'},
-  {cat:'recuerdo',q:'¿Cuál fue la noche más divertida que hemos tenido juntos?'},
-  {cat:'recuerdo',q:'¿Recuerdas la primera vez que conociste a mi familia? ¿Cómo te sentiste?'},
-  {cat:'recuerdo',q:'¿Cuál fue el momento en que más orgulloso(a) te sentiste de mí?'},
-  {cat:'recuerdo',q:'¿Hay alguna promesa que me hiciste y que aún recuerdas con cariño?'},
-  {cat:'recuerdo',q:'¿Qué cosa de nuestra relación al principio te parecía rara y ahora te encanta?'},
-  {cat:'recuerdo',q:'¿Cuál fue la primera sorpresa que me preparaste o que yo te preparé?'},
-  {cat:'recuerdo',q:'¿Cuál es el apodo que me pusiste o que yo te puse?'},
-  {cat:'recuerdo',q:'¿Qué fue lo primero que me dijiste o lo primero que te dije?'},
-  {cat:'recuerdo',q:'¿Cuál fue el cumpleaños más especial que celebramos juntos?'},
-  {cat:'recuerdo',q:'¿Recuerdas la primera vez que nos quedamos dormidos juntos?'},
-  {cat:'recuerdo',q:'¿Qué notaste de mí antes de que empezáramos a salir?'},
-  {cat:'recuerdo',q:'¿Cuál ha sido el día más difícil que hemos superado juntos?'},
-  {cat:'recuerdo',q:'¿Qué objeto guardo o guardas como recuerdo de un momento nuestro?'},
-  {cat:'recuerdo',q:'¿Cuándo fue la primera vez que me defendiste ante alguien?'},
-  {cat:'recuerdo',q:'¿Cuál fue la primera vez que me hiciste reír hasta llorar?'},
-  {cat:'recuerdo',q:'¿Recuerdas cuánto tiempo tardamos en darnos nuestro primer beso?'},
-  {cat:'recuerdo',q:'¿Cuál fue el momento en que sentiste que realmente me conocías?'},
-  {cat:'recuerdo',q:'¿Qué cosa del pasado quisieramos revivir juntos si pudiéramos?'},
-  {cat:'recuerdo',q:'¿Cuándo fue la primera vez que lloraste frente a mí?'},
-  {cat:'recuerdo',q:'¿Cuál fue el primer viaje en carro o transporte largo que hicimos juntos?'},
-  {cat:'recuerdo',q:'¿Qué momento de silencio compartido recuerdas con especial cariño?'},
-  {cat:'recuerdo',q:'¿Recuerdas la primera vez que cocinamos juntos? ¿Cómo resultó?'},
-  {cat:'recuerdo',q:'¿Cuál fue el mensaje de texto más largo o especial que me enviaste?'},
-  {cat:'recuerdo',q:'¿Hubo algún momento en que me viste y pensaste "me gusta mucho esta persona"?'},
-  {cat:'recuerdo',q:'¿Cuál es el recuerdo favorito que tienes de nosotros este último año?'},
-  {cat:'recuerdo',q:'¿Qué historia de nosotros le contarías a nuestros hijos o amigos?'},
-  {cat:'picante',q:'¿Cuál es tu fantasía favorita que aún no le has contado a tu pareja?'},
-  {cat:'picante',q:'¿Dónde está el lugar más inesperado donde te gustaría tener un momento romántico?'},
-  {cat:'picante',q:'¿Qué parte de mi cuerpo es tu favorita y por qué?'},
-  {cat:'picante',q:'¿Cuál es la cosa más atrevida que harías conmigo si pudiéramos?'},
-  {cat:'picante',q:'¿Hay algo que siempre hayas querido probar pero te ha dado pena pedir?'},
-  {cat:'picante',q:'¿Qué es lo que más te pone nervioso(a) de mí en un buen sentido?'},
-  {cat:'picante',q:'¿Cuál es tu recuerdo más íntimo favorito de nosotros dos?'},
-  {cat:'picante',q:'¿Qué prenda o look mío te parece irresistible?'},
-  {cat:'picante',q:'¿Qué canción te pone de humor romántico y por qué?'},
-  {cat:'picante',q:'¿Cuál es el momento del día en que más me deseas?'},
-  {cat:'picante',q:'¿Qué harías si tuviéramos una noche completamente solos sin interrupciones?'},
-  {cat:'picante',q:'¿Hay una película o escena de película que te haya puesto ideas en la cabeza?'},
-  {cat:'picante',q:'¿Cuál es el cumplido que más te gusta recibir de mí?'},
-  {cat:'picante',q:'¿Qué cosa pequeña que hago te parece increíblemente seductora?'},
-  {cat:'picante',q:'¿Si pudieras elegir una noche perfecta romántica, cómo sería?'},
-  {cat:'picante',q:'¿Cuál sería tu escenario soñado para una escapada de pareja?'},
-  {cat:'picante',q:'¿Qué cosa mía te vuelve loco(a) aunque no lo admitas siempre?'},
-  {cat:'picante',q:'¿Hay algo que quieras que haga más seguido para hacerte sentir deseado(a)?'},
-  {cat:'picante',q:'¿Cuál es tu parte favorita de cuando nos reencontramos después de un tiempo separados?'},
-  {cat:'picante',q:'¿Qué tipo de mensaje tuyo me sacaría una sonrisa tonta en cualquier momento?'},
-  {cat:'picante',q:'¿Hay una fantasía de película que te gustaría recrear conmigo?'},
-  {cat:'picante',q:'¿Qué cosa mía te distrae cuando intentas concentrarte?'},
-  {cat:'picante',q:'¿Cuál es el beso que más recuerdas de los que nos hemos dado?'},
-  {cat:'picante',q:'¿Qué harías si te digo que esta noche puedes pedir lo que quieras?'},
-  {cat:'picante',q:'¿Hay algo que siempre quisiste decirme pero nunca encontraste el momento?'},
-  {cat:'picante',q:'¿Cuál es tu forma favorita de que te despierte por la mañana?'},
-  {cat:'picante',q:'¿Qué cosa hace que inmediatamente me quieras dar un beso?'},
-  {cat:'picante',q:'¿Cuál es la temperatura perfecta de una noche romántica con nosotros?'},
-  {cat:'picante',q:'¿Qué harías si de repente tuviéramos una semana de vacaciones solo para los dos?'},
-  {cat:'picante',q:'¿Hay una palabra o frase que te encanta escucharme decir?'},
-  {cat:'picante',q:'¿Cuál sería el plan perfecto para celebrar nuestro aniversario?'},
-  {cat:'picante',q:'¿Qué gesto romántico mío recuerdas que te dejó sin palabras?'},
-  {cat:'picante',q:'¿Cuál es la forma en que más disfrutas de mi compañía?'},
-  {cat:'picante',q:'¿Qué cosa te gustaría que hiciéramos más seguido juntos en privado?'},
-  {cat:'picante',q:'¿Cuándo fue la última vez que te sorprendí y cómo te sentiste?'},
-  {cat:'picante',q:'¿Hay algún lugar de mi cuerpo que te encante tocar o abrazar?'},
-  {cat:'picante',q:'¿Qué harías si pudieras planear una sorpresa para mí esta semana?'},
-  {cat:'picante',q:'¿Cuál es el perfume o aroma mío que más te gusta?'},
-  {cat:'picante',q:'¿Qué cosa mía extrañas más cuando estamos separados?'},
-  {cat:'picante',q:'¿Cuál es el tipo de abrazo tuyo que más me gusta y por qué?'},
-  {cat:'picante',q:'¿Cuándo fue la última vez que te hice ruborizar o sonrojarte?'},
-  {cat:'picante',q:'¿Hay algo de ti que crees que me vuelve loco(a) pero no me has preguntado?'},
-  {cat:'picante',q:'¿Cuál sería la dedicatoria perfecta de una canción de amor para mí?'},
-  {cat:'picante',q:'¿Qué escenario romántico te imaginas que aún no hemos vivido?'},
-  {cat:'picante',q:'¿Qué cosa tuya me parece más atractiva cuando no te das cuenta?'},
-  {cat:'picante',q:'¿Cuándo sientes que nuestra conexión es más intensa?'},
-  {cat:'picante',q:'¿Hay una prenda de ropa mía que te encante especialmente?'},
-  {cat:'picante',q:'¿Qué harías conmigo si tuvieras una tarde libre sin planes?'},
-  {cat:'picante',q:'¿Cuál es la cosa más romántica que alguien te haya hecho jamás?'},
-  {cat:'picante',q:'¿Hay algo de nuestra intimidad que te gustaría que cambiara o mejorar juntos?'},
-  {cat:'divertida',q:'Si fuéramos personajes de una película, ¿quiénes seríamos?'},
-  {cat:'divertida',q:'¿Cuál es el hábito más raro del otro que encuentras adorable?'},
-  {cat:'divertida',q:'Si tuviéramos que sobrevivir en una isla desierta, ¿quién sería más inútil?'},
-  {cat:'divertida',q:'¿A cuál animal te recuerda más tu pareja y por qué?'},
-  {cat:'divertida',q:'Si pudieras cambiarle un solo hábito a tu pareja, ¿cuál sería?'},
-  {cat:'divertida',q:'¿Cuál sería nuestro superpoder si fuéramos un equipo de superhéroes?'},
-  {cat:'divertida',q:'¿En qué reality show crees que participaríamos mejor como pareja?'},
-  {cat:'divertida',q:'Si tuvieras que describirme con tres emojis, ¿cuáles serían?'},
-  {cat:'divertida',q:'¿Cuál sería nuestro nombre de pareja si fuéramos famosos?'},
-  {cat:'divertida',q:'Si nuestra relación fuera una serie, ¿cómo se llamaría y de qué género sería?'},
-  {cat:'divertida',q:'¿Cuál es la excusa más absurda que me has dado para algo?'},
-  {cat:'divertida',q:'Si intercambiáramos cuerpos por un día, ¿qué harías primero?'},
-  {cat:'divertida',q:'¿Cuál es la cara más graciosa que me haces y cuándo la sacas?'},
-  {cat:'divertida',q:'Si fuéramos a un karaoke, ¿qué canción elegiría cada uno?'},
-  {cat:'divertida',q:'¿Cuál es el apodo más ridículo que podrías ponerme?'},
-  {cat:'divertida',q:'¿Qué plato intentarías cocinar para impresionarme aunque se te queme?'},
-  {cat:'divertida',q:'Si ganáramos la lotería mañana, ¿qué haríamos primero?'},
-  {cat:'divertida',q:'¿Cuál es la película que definitivamente NO podríamos ver juntos sin pelear?'},
-  {cat:'divertida',q:'Si fuéramos personajes de videojuego, ¿qué rol tendría cada uno?'},
-  {cat:'divertida',q:'¿Cuál es el momento más embarazoso que hemos vivido juntos?'},
-  {cat:'divertida',q:'Si tuviéramos una mascota exótica, ¿qué animal sería y cómo se llamaría?'},
-  {cat:'divertida',q:'¿Cuál sería nuestro restaurante si abriéramos uno juntos?'},
-  {cat:'divertida',q:'¿Qué show o canal de YouTube seríamos si fuéramos creadores de contenido?'},
-  {cat:'divertida',q:'¿Cuál es la discusión más tonta que hemos tenido?'},
-  {cat:'divertida',q:'Si pudiéramos teleportarnos a cualquier lugar ahora mismo, ¿a dónde iríamos?'},
-  {cat:'divertida',q:'¿Cuál es la manía tuya que más me divierte aunque no lo admita?'},
-  {cat:'divertida',q:'Si fuéramos personajes históricos, ¿quiénes seríamos?'},
-  {cat:'divertida',q:'¿Qué talento secreto mío te sorprendería descubrir?'},
-  {cat:'divertida',q:'¿Cuál es la cosa más impulsiva que hemos hecho juntos?'},
-  {cat:'divertida',q:'Si organizaras una fiesta temática para mí, ¿cuál sería el tema?'},
-  {cat:'divertida',q:'¿Cuál es la comida que definitivamente NO compartiríamos?'},
-  {cat:'divertida',q:'Si tuviéramos que hacer un dueto musical, ¿qué canción elegiríamos?'},
-  {cat:'divertida',q:'¿Cuál de los dos sería el villano y cuál el héroe en una historia de acción?'},
-  {cat:'divertida',q:'¿Qué profesión totalmente distinta a la tuya me imaginarías haciendo?'},
-  {cat:'divertida',q:'Si pudiéramos comer solo una comida por el resto de la vida, ¿cuál elegiría cada uno?'},
-  {cat:'divertida',q:'¿Cuál es la peor moda o estilo que cualquiera de los dos ha tenido?'},
-  {cat:'divertida',q:'Si nuestro amor fuera un sabor de helado, ¿cuál sería?'},
-  {cat:'divertida',q:'¿Cuál de los dos se perdería primero en una ciudad desconocida?'},
-  {cat:'divertida',q:'¿Qué haríamos si nos quedamos atrapados en un elevador por dos horas?'},
-  {cat:'divertida',q:'¿Cuál es el meme que mejor me describe?'},
-  {cat:'divertida',q:'Si fuéramos a un escape room, ¿quién sería el que entra en pánico?'},
-  {cat:'divertida',q:'¿Cuál es el plan más absurdo que hemos hecho y terminó bien?'},
-  {cat:'divertida',q:'¿A cuál personaje de dibujos animados te parezco más y por qué?'},
-  {cat:'divertida',q:'¿Qué deporte ridículo inventaríamos si pudiéramos?'},
-  {cat:'divertida',q:'Si pudieras programarme un día perfecto de actividades, ¿cómo sería?'},
-  {cat:'divertida',q:'¿Cuál es el tic o muletilla mía que repito sin darme cuenta?'},
-  {cat:'divertida',q:'¿Qué harías si me vieras actuar en una obra de teatro?'},
-  {cat:'divertida',q:'¿Cuál de los dos tiene peor sentido de la orientación?'},
-  {cat:'divertida',q:'¿Qué canción te sale automáticamente si te pregunto cuál me describe?'},
-  {cat:'divertida',q:'¿Si fuéramos a una feria, cuál sería la primera atracción en la que nos subiríamos?'},
-  {cat:'profunda',q:'¿Cuál es el sueño que más quieres cumplir en los próximos años?'},
-  {cat:'profunda',q:'¿Qué es lo que más valoras de nuestra relación?'},
-  {cat:'profunda',q:'¿Hay algo que quisieras que supiera de ti pero nunca has encontrado cómo decirlo?'},
-  {cat:'profunda',q:'¿Cuál ha sido el momento en que más me has necesitado?'},
-  {cat:'profunda',q:'¿Qué es lo que más admiras de mí como persona?'},
-  {cat:'profunda',q:'¿Cómo imaginas que será nuestra vida juntos en 10 años?'},
-  {cat:'profunda',q:'¿Cuál es el miedo que más te cuesta compartir conmigo?'},
-  {cat:'profunda',q:'¿Qué cosa pequeña que hago te hace sentir muy amado(a)?'},
-  {cat:'profunda',q:'¿Qué aprendiste de ti mismo(a) desde que estamos juntos?'},
-  {cat:'profunda',q:'¿Hay algo que cambiarías de la forma en que nos relacionamos?'},
-  {cat:'profunda',q:'¿Cuál es la decisión más importante que hemos tomado juntos?'},
-  {cat:'profunda',q:'¿Qué significa para ti "sentirte amado(a)" en el día a día?'},
-  {cat:'profunda',q:'¿Hay una versión de ti que sientes que solo yo conozco?'},
-  {cat:'profunda',q:'¿Qué es lo que más te da miedo perder en esta relación?'},
-  {cat:'profunda',q:'¿Cuál es la lección más grande que me has dado sin darte cuenta?'},
-  {cat:'profunda',q:'¿Hay algo de tu pasado que aún influye en cómo te relacionas conmigo?'},
-  {cat:'profunda',q:'¿Cuál es la cosa que más te cuesta pedirme pero que necesitas?'},
-  {cat:'profunda',q:'¿Qué valor nuestro crees que es el más importante para que funcionemos?'},
-  {cat:'profunda',q:'¿Cómo te gustaría que te apoyara más en tus metas?'},
-  {cat:'profunda',q:'¿Qué versión de ti mismo(a) quieres ser en cinco años?'},
-  {cat:'profunda',q:'¿Hay algo que hayas sacrificado por esta relación y que no me has contado?'},
-  {cat:'profunda',q:'¿Cuándo sientes que nuestra comunicación es mejor y cuándo más difícil?'},
-  {cat:'profunda',q:'¿Qué es lo que más te hace sentir seguro(a) en nuestra relación?'},
-  {cat:'profunda',q:'¿Cuál es el proyecto de vida que más quieres compartir conmigo?'},
-  {cat:'profunda',q:'¿Qué cosa de nuestra relación crees que nos hace únicos?'},
-  {cat:'profunda',q:'¿Hay algo que hayas aprendido de tus relaciones anteriores que aplicas con nosotros?'},
-  {cat:'profunda',q:'¿Cuál es la conversación más difícil que hemos tenido y cómo crees que nos afectó?'},
-  {cat:'profunda',q:'¿Qué parte de mi forma de ser te ha ayudado a crecer?'},
-  {cat:'profunda',q:'¿Cuándo sientes que soy tu mejor versión gracias a ti?'},
-  {cat:'profunda',q:'¿Hay algo que no me hayas dicho por miedo a herirme?'},
-  {cat:'profunda',q:'¿Qué crees que le falta a nuestra relación para ser aún más fuerte?'},
-  {cat:'profunda',q:'¿Cuál es el mayor reto que crees que enfrentaremos en el futuro?'},
-  {cat:'profunda',q:'¿Qué quieres que las personas que nos conocen digan de nosotros como pareja?'},
-  {cat:'profunda',q:'¿Hay algo que ya perdonaste pero que aún te cuesta soltar?'},
-  {cat:'profunda',q:'¿Cuál es la forma en que más demuestro mi amor sin palabras?'},
-  {cat:'profunda',q:'¿Qué hábito o rutina nuestra sientes que nos une más?'},
-  {cat:'profunda',q:'¿Cuál es la cosa más valiente que me has visto hacer?'},
-  {cat:'profunda',q:'¿Cuándo sientes que eres completamente tú mismo(a) conmigo?'},
-  {cat:'profunda',q:'¿Qué le pedirías al universo para nuestra relación si pudieras?'},
-  {cat:'profunda',q:'¿Hay algo de mi personalidad que al principio no entendías y ahora amas?'},
-  {cat:'profunda',q:'¿Cuál es la forma en que más quieres que te recuerde dentro de 20 años?'},
-  {cat:'profunda',q:'¿Qué crees que nos unió en el momento más importante?'},
-  {cat:'profunda',q:'¿Cuál es la promesa tácita que sientes que nos hacemos todos los días?'},
-  {cat:'profunda',q:'¿Qué parte de ti sientes que he ayudado a sanar?'},
-  {cat:'profunda',q:'¿Hay una meta que tienes y que nunca me has contado del todo?'},
-  {cat:'profunda',q:'¿Cuándo fue la última vez que me viste y sentiste que te había ido bien en la vida?'},
-  {cat:'profunda',q:'¿Qué cosa de nuestra convivencia diaria te hace más feliz?'},
-  {cat:'profunda',q:'¿Cuál es el legado que quieres dejar juntos como pareja?'},
-  {cat:'profunda',q:'¿Hay algo que solo yo sé de ti y que te alegra que sea así?'},
-  {cat:'profunda',q:'¿Qué significa para ti que sigamos eligiéndonos todos los días?'}
-];
-
-for (let i = 0; i < 100; i++) {
-  const categories = ['recuerdo', 'picante', 'divertida', 'profunda'];
-  const category = categories[Math.floor(Math.random() * categories.length)];
-  const questions = {
-    recuerdo: `¿Recuerdas cuando ${['celebramos', 'reímos', 'viajamos', 'compartimos'][Math.floor(Math.random()*4)]} juntos de manera especial?`,
-    picante: `¿Qué ${['momento', 'detalle', 'gesto', 'mirada'][Math.floor(Math.random()*4)]} mío te parece más atractivo/a?`,
-    divertida: `Si ${['fuéramos animales', 'viviéramos en otro planeta', 'tuviéramos superpoderes', 'fuéramos famosos'][Math.floor(Math.random()*4)]}, ¿cómo sería nuestra vida?`,
-    profunda: `¿Qué ${['valor', 'enseñanza', 'sueño', 'propósito'][Math.floor(Math.random()*4)]} quieres que compartamos siempre?`
-  };
-  DEFAULT_CARDS_BASE.push({cat: category, q: questions[category]});
-}
-
-const DEFAULT_CARDS = DEFAULT_CARDS_BASE;
-const CAT_LABELS = { recuerdo:'Recuerdos', picante:'Picante', divertida:'Divertida', profunda:'Profunda' };
-const STORAGE_KEY = 'cartas-aleja-v4';
-
-const state = {
-  names: ['Alejandro','Alejandra'],
-  scores: [0,0],
-  turn: 0,
-  filters: { recuerdo:true, picante:true, divertida:true, profunda:true },
-  custom: [],
-  deck: [],
-  current: null,
-  history: [],
-  revealed: false,
-  sfxMuted: false,
-  audioContext: null,
-  timer: null,
-  timeLeft: 60,
-  timerActive: false,
-  stats: {
-    currentStreak: 0,
-    bestStreak: 0,
-    totalAnswered: 0,
-    totalScore: 0,
-    perfectCount: 0,
-    categoriesUsed: new Set(),
-    unlockedAchievements: new Set()
-  },
-  backgroundMusic: null
-};
-
-function save() {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({
-      names: state.names, scores: state.scores, turn: state.turn,
-      filters: state.filters, custom: state.custom, sfxMuted: state.sfxMuted,
-      stats: {
-        ...state.stats,
-        categoriesUsed: Array.from(state.stats.categoriesUsed),
-        unlockedAchievements: Array.from(state.stats.unlockedAchievements)
+  function startTimer() {
+    stopTimer();
+    if (!state.timerEnabled) return;
+    if (!state.revealed) return;
+    
+    timeLeft = 60;
+    updateTimerDisplay();
+    
+    timerInterval = setInterval(() => {
+      if (!state.revealed) {
+        stopTimer();
+        return;
       }
-    }));
-  } catch(e) {}
-}
-
-function load() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return;
-    const d = JSON.parse(raw);
-    state.names = d.names || state.names;
-    state.scores = d.scores || state.scores;
-    state.turn = d.turn ?? 0;
-    state.filters = d.filters || state.filters;
-    state.custom = d.custom || [];
-    state.sfxMuted = d.sfxMuted ?? false;
-    if (d.stats) {
-      state.stats = {
-        ...state.stats,
-        ...d.stats,
-        categoriesUsed: new Set(d.stats.categoriesUsed || []),
-        unlockedAchievements: new Set(d.stats.unlockedAchievements || [])
-      };
-    }
-  } catch(e) {}
-}
-
-function allCards() { 
-  return DEFAULT_CARDS.concat(state.custom);
-}
-
-function shuffle(arr){
-  const a = arr.slice();
-  for (let i = a.length-1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i+1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-function showNotification(message, type = 'info', duration = 3000) {
-  const notification = document.createElement('div');
-  notification.className = `notification ${type}`;
-  notification.innerHTML = `<span>${type === 'achievement' ? '🏆' : (type === 'success' ? '🎉' : '✨')}</span><span>${message}</span>`;
-  document.body.appendChild(notification);
-  
-  setTimeout(() => {
-    notification.classList.add('fade-out');
-    setTimeout(() => notification.remove(), 300);
-  }, duration);
-}
-
-function triggerConfetti() {
-  canvasConfetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, colors: ['#E8B4B8', '#C4B4E8', '#B4E8D4', '#E8C060'] });
-  setTimeout(() => {
-    canvasConfetti({ particleCount: 50, spread: 100, origin: { y: 0.7 }, startVelocity: 15, colors: ['#9B87F5', '#F59B87', '#87F5B4'] });
-  }, 150);
-}
-
-function checkAchievements() {
-  const statsForCheck = {
-    currentStreak: state.stats.currentStreak,
-    totalScore: state.stats.totalScore,
-    totalAnswered: state.stats.totalAnswered,
-    categoriesUsed: state.stats.categoriesUsed,
-    perfectCount: state.stats.perfectCount
-  };
-  
-  for (const achievement of ACHIEVEMENTS) {
-    if (!state.stats.unlockedAchievements.has(achievement.id) && achievement.condition(statsForCheck)) {
-      state.stats.unlockedAchievements.add(achievement.id);
-      showNotification(`${achievement.icon} ¡Logro desbloqueado! ${achievement.name}`, 'achievement', 4000);
-      triggerConfetti();
-    }
-  }
-  
-  updateStatsDisplay();
-}
-
-function updateStatsDisplay() {
-  document.getElementById('current-streak').textContent = state.stats.currentStreak;
-  document.getElementById('best-streak').textContent = state.stats.bestStreak;
-  document.getElementById('total-answered').textContent = state.stats.totalAnswered;
-  document.getElementById('achievements-count').textContent = state.stats.unlockedAchievements.size;
-  
-  const nextAchievement = ACHIEVEMENTS.find(a => !state.stats.unlockedAchievements.has(a.id));
-  if (nextAchievement) {
-    document.getElementById('next-achievement').innerHTML = `${nextAchievement.icon} ${nextAchievement.name}`;
-  } else {
-    document.getElementById('next-achievement').innerHTML = '🏆 ¡Completista!';
-  }
-}
-
-function updateStats(scored, category) {
-  if (scored) {
-    state.stats.totalScore++;
-    state.stats.currentStreak++;
-    if (state.stats.currentStreak > state.stats.bestStreak) {
-      state.stats.bestStreak = state.stats.currentStreak;
-    }
-    state.stats.totalAnswered++;
-    if (category) {
-      state.stats.categoriesUsed.add(category);
-    }
-    
-    if (state.stats.currentStreak >= 5 && state.stats.currentStreak % 5 === 0) {
-      state.stats.perfectCount++;
-    }
-    
-    triggerConfetti();
-    showNotification(`✨ +1 punto para ${state.names[state.turn]}!`, 'success', 2000);
-  } else {
-    state.stats.currentStreak = 0;
-  }
-  
-  checkAchievements();
-  updateStatsDisplay();
-}
-
-function beep(freq=600, dur=80) {
-  if (state.sfxMuted) return;
-  try {
-    if (!state.audioContext) {
-      state.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    }
-    const ctx = state.audioContext;
-    const o = ctx.createOscillator();
-    const g = ctx.createGain();
-    o.frequency.value = freq;
-    o.type = 'sine';
-    g.gain.value = 0.05;
-    o.connect(g);
-    g.connect(ctx.destination);
-    o.start();
-    o.stop(ctx.currentTime + dur/1000);
-    if (ctx.state === 'suspended') {
-      ctx.resume();
-    }
-  } catch(e) {}
-  if (navigator.vibrate) navigator.vibrate(20);
-}
-
-function startTimer() {
-  if (state.timer) clearInterval(state.timer);
-  state.timeLeft = 60;
-  state.timerActive = true;
-  updateTimerDisplay();
-  
-  state.timer = setInterval(() => {
-    if (state.timerActive && state.revealed) {
-      state.timeLeft--;
-      updateTimerDisplay();
-      
-      if (state.timeLeft <= 0) {
-        clearInterval(state.timer);
-        state.timerActive = false;
-        beep(400, 300);
-        if (state.revealed && state.current) {
-          showNotification(`⏰ Se acabó el tiempo para ${state.names[state.turn]}!`, 'info', 2000);
-          nextCard(false);
+      if (timeLeft > 0) {
+        timeLeft--;
+        updateTimerDisplay();
+        
+        if (timeLeft === 10 && !state.muted) {
+          playBeep(800, 150);
         }
-      } else if (state.timeLeft <= 10) {
-        document.getElementById('timer-value').classList.add('warning');
+        
+        if (timeLeft === 0) {
+          stopTimer();
+          if (state.revealed) {
+            playBeep(400, 200);
+            nextCard(false);
+          }
+        }
+      } else {
+        stopTimer();
       }
+    }, 1000);
+  }
+
+  function buildDeck() {
+    stopTimer();
+    state.deck = shuffle(allCards().filter(c => state.filters[c.cat]));
+    state.current = null;
+    state.revealed = false;
+    state.history = [];
+    render();
+    save();
+  }
+
+  function revealCard() {
+    if (state.revealed || state.deck.length === 0) return;
+    state.current = state.deck.pop();
+    state.revealed = true;
+    playBeep(700, 80);
+    render();
+    startTimer();
+  }
+
+  function nextCard(scored) {
+    stopTimer();
+    if (scored) {
+      state.scores[state.turn]++;
+      playBeep(900, 100);
     }
-  }, 1000);
-}
-
-function stopTimer() {
-  if (state.timer) {
-    clearInterval(state.timer);
-    state.timer = null;
-  }
-  state.timerActive = false;
-  state.timeLeft = 60;
-  updateTimerDisplay();
-  document.getElementById('timer-value').classList.remove('warning');
-}
-
-function updateTimerDisplay() {
-  const timerEl = document.getElementById('timer-value');
-  if (timerEl) timerEl.textContent = state.timeLeft;
-}
-
-function buildDeck() {
-  stopTimer();
-  state.deck = shuffle(allCards().filter(c => state.filters[c.cat]));
-  state.current = null;
-  state.revealed = false;
-  state.history = [];
-  save();
-  render();
-}
-
-function revealCard() {
-  if (state.revealed || state.deck.length === 0) return;
-  state.current = state.deck.pop();
-  state.revealed = true;
-  beep(700, 60);
-  startTimer();
-  render(true);
-}
-
-function nextCard(scored) {
-  if (scored) {
-    state.scores[state.turn]++;
-    updateStats(true, state.current?.cat);
-    beep(900, 100);
-  } else {
-    updateStats(false);
-  }
-  
-  if (state.current) state.history.push(state.current);
-  state.turn = (state.turn + 1) % 2;
-  state.current = null;
-  state.revealed = false;
-  stopTimer();
-  save();
-  render();
-}
-
-function prevCard() {
-  if (state.history.length === 0) return;
-  if (state.current) state.deck.push(state.current);
-  state.current = state.history.pop();
-  state.revealed = true;
-  state.turn = (state.turn + 1) % 2;
-  stopTimer();
-  startTimer();
-  render(true);
-}
-
-function toggleFilter(cat) {
-  const onCount = Object.values(state.filters).filter(Boolean).length;
-  if (state.filters[cat] && onCount === 1) return;
-  state.filters[cat] = !state.filters[cat];
-  buildDeck();
-  save();
-}
-
-function resetGame() {
-  if (!confirm('¿Reiniciar puntajes, estadísticas y mazo?')) return;
-  state.scores = [0,0];
-  state.turn = 0;
-  state.history = [];
-  state.current = null;
-  state.revealed = false;
-  state.stats = {
-    currentStreak: 0,
-    bestStreak: 0,
-    totalAnswered: 0,
-    totalScore: 0,
-    perfectCount: 0,
-    categoriesUsed: new Set(),
-    unlockedAchievements: new Set()
-  };
-  stopTimer();
-  buildDeck();
-  save();
-  updateStatsDisplay();
-}
-
-function renderFilters() {
-  const row = document.getElementById('filter-row');
-  if (!row) return;
-  row.innerHTML = '';
-  const onCount = Object.values(state.filters).filter(Boolean).length;
-  for (const cat of Object.keys(CAT_LABELS)) {
-    const isOn = state.filters[cat];
-    const onlyOne = isOn && onCount === 1;
-    const btn = document.createElement('button');
-    btn.className = 'filter-btn';
-    btn.type = 'button';
-    btn.setAttribute('data-cat', cat);
-    btn.setAttribute('aria-pressed', isOn);
-    if (onlyOne) btn.disabled = true;
-    if (onlyOne) btn.title = 'Debe quedar al menos una categoría';
-    btn.textContent = CAT_LABELS[cat];
-    btn.onclick = () => toggleFilter(cat);
-    row.appendChild(btn);
-  }
-}
-
-function render() {
-  const totalCards = allCards().length;
-  document.getElementById('total-count').textContent = totalCards;
-  document.getElementById('name-p1').textContent = state.names[0];
-  document.getElementById('name-p2').textContent = state.names[1];
-  document.getElementById('score-p1').textContent = state.scores[0];
-  document.getElementById('score-p2').textContent = state.scores[1];
-  document.getElementById('turn-name').textContent = state.names[state.turn];
-  
-  const p1Card = document.getElementById('card-p1');
-  const p2Card = document.getElementById('card-p2');
-  if (p1Card) p1Card.className = 'score-card' + (state.turn === 0 ? ' active' : '');
-  if (p2Card) p2Card.className = 'score-card' + (state.turn === 1 ? ' active' : '');
-
-  renderFilters();
-
-  const remainingTotal = state.deck.length + (state.current ? 1 : 0);
-  document.getElementById('remaining').innerHTML = 
-    `✦  ${remainingTotal} carta${remainingTotal === 1 ? '' : 's'} restante${remainingTotal === 1 ? '' : 's'} de ${totalCards}  ✦`;
-
-  const prevBtn = document.getElementById('btn-prev');
-  if (prevBtn) prevBtn.disabled = state.history.length === 0;
-
-  const area = document.getElementById('deck-area');
-  const acts = document.getElementById('actions');
-  if (!area || !acts) return;
-  area.innerHTML = '';
-  acts.innerHTML = '';
-
-  if (!state.revealed && remainingTotal === 0 && !state.current) {
-    area.innerHTML = `
-      <div class="empty-state">
-        <div>✨</div>
-        <br>
-        <div>¡Se acabaron las cartas!</div>
-        <br>
-        <button class="btn btn-primary" type="button" onclick="buildDeck()">Barajar de nuevo</button>
-      </div>`;
-    return;
+    if (state.current) state.history.push(state.current);
+    state.turn = (state.turn + 1) % 2;
+    state.current = null;
+    state.revealed = false;
+    render();
+    save();
   }
 
-  if (state.deck.length >= 4) {
-    const div = document.createElement('div');
-    div.className = 'card card-stack-4';
-    div.setAttribute('aria-hidden', 'true');
-    area.appendChild(div);
-  }
-  if (state.deck.length >= 3) {
-    const div = document.createElement('div');
-    div.className = 'card card-stack-3';
-    div.setAttribute('aria-hidden', 'true');
-    area.appendChild(div);
-  }
-  if (state.deck.length >= 2) {
-    const div = document.createElement('div');
-    div.className = 'card card-stack-2';
-    div.setAttribute('aria-hidden', 'true');
-    area.appendChild(div);
-  }
-  if (state.deck.length >= 1) {
-    const div = document.createElement('div');
-    div.className = 'card card-stack-1';
-    div.setAttribute('aria-hidden', 'true');
-    area.appendChild(div);
+  function prevCard() {
+    if (state.history.length === 0) return;
+    stopTimer();
+    if (state.current) state.deck.push(state.current);
+    state.current = state.history.pop();
+    state.revealed = true;
+    state.turn = (state.turn + 1) % 2;
+    render();
+    startTimer();
   }
 
-  const flipper = document.createElement('div');
-  flipper.className = 'flipper' + (state.revealed ? ' flipped' : '');
+  function toggleFilter(cat) {
+    const onCount = Object.values(state.filters).filter(Boolean).length;
+    if (state.filters[cat] && onCount === 1) return;
+    state.filters[cat] = !state.filters[cat];
+    buildDeck();
+    save();
+  }
 
-  const back = document.createElement('div');
-  back.className = 'card card-back';
-  back.setAttribute('role', 'button');
-  back.setAttribute('tabindex', state.revealed ? '-1' : '0');
-  back.setAttribute('aria-label', 'Revelar carta');
-  back.onclick = () => revealCard();
-  back.onkeydown = (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); revealCard(); } };
-  back.innerHTML = `
-    <svg width="100" height="100" viewBox="0 0 64 64" aria-hidden="true" style="margin-bottom:15px;">
-      <defs><linearGradient id="gb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E8B4B8"/><stop offset="1" stop-color="#C4B4E8"/></linearGradient></defs>
-      <circle cx="32" cy="32" r="30" fill="none" stroke="url(#gb)" stroke-width="2"/>
-      <path d="M32 48 C 18 38, 14 28, 22 22 C 27 19, 32 22, 32 28 C 32 22, 37 19, 42 22 C 50 28, 46 38, 32 48 Z" fill="url(#gb)" opacity="0.9"/>
-    </svg>
-    <div class="card-back-text">Toca para revelar</div>
-    <div style="margin-top: 10px; font-size: 10px;">✨ 60 segundos para responder ✨</div>`;
-  flipper.appendChild(back);
+  function resetGame() {
+    if (!confirm('¿Reiniciar puntajes y mazo?')) return;
+    stopTimer();
+    state.scores = [0, 0];
+    state.turn = 0;
+    state.revealed = false;
+    state.current = null;
+    state.history = [];
+    buildDeck();
+    save();
+  }
 
-  if (state.current) {
-    const front = document.createElement('div');
-    front.className = 'card card-front';
-    front.innerHTML = `
-      <div class="card-header">
-        <span class="category-badge cat-${state.current.cat}">${CAT_LABELS[state.current.cat]}</span>
+  function toggleTimer() {
+    state.timerEnabled = !state.timerEnabled;
+    const toggleBtn = document.getElementById('timer-toggle');
+    if (toggleBtn) toggleBtn.style.opacity = state.timerEnabled ? '1' : '0.5';
+    if (!state.timerEnabled) {
+      stopTimer();
+      timeLeft = 60;
+      updateTimerDisplay();
+    } else if (state.revealed) {
+      startTimer();
+    }
+    save();
+  }
+
+  function renderFilters() {
+    const row = document.getElementById('filter-row');
+    if (!row) return;
+    row.innerHTML = '';
+    const onCount = Object.values(state.filters).filter(Boolean).length;
+    for (const cat of Object.keys(CAT_LABELS)) {
+      const isOn = state.filters[cat];
+      const onlyOne = isOn && onCount === 1;
+      const btn = document.createElement('button');
+      btn.className = 'filter-btn';
+      btn.setAttribute('data-cat', cat);
+      btn.setAttribute('aria-pressed', String(isOn));
+      if (onlyOne) btn.disabled = true;
+      btn.title = onlyOne ? 'Debe quedar al menos una categoría' : '';
+      btn.textContent = CAT_LABELS[cat];
+      btn.onclick = () => toggleFilter(cat);
+      row.appendChild(btn);
+    }
+  }
+
+  function render() {
+    document.getElementById('total-count').textContent = allCards().length;
+    document.getElementById('name-p1').textContent = state.names[0];
+    document.getElementById('name-p2').textContent = state.names[1];
+    document.getElementById('score-p1').textContent = state.scores[0];
+    document.getElementById('score-p2').textContent = state.scores[1];
+    document.getElementById('turn-name').textContent = state.names[state.turn];
+    
+    const cardP1 = document.getElementById('card-p1');
+    const cardP2 = document.getElementById('card-p2');
+    if (cardP1) cardP1.className = 'score-card' + (state.turn === 0 ? ' active' : '');
+    if (cardP2) cardP2.className = 'score-card' + (state.turn === 1 ? ' active' : '');
+
+    renderFilters();
+
+    const total = state.deck.length + (state.current ? 1 : 0);
+    const remainingEl = document.getElementById('remaining');
+    if (remainingEl) {
+      remainingEl.textContent = `🎴 ${total} CARTA${total === 1 ? '' : 'S'} RESTANTE${total === 1 ? '' : 'S'} DE ${allCards().length} 🎴`;
+    }
+
+    const btnPrev = document.getElementById('btn-prev');
+    if (btnPrev) btnPrev.disabled = state.history.length === 0;
+
+    const area = document.getElementById('deck-area');
+    const acts = document.getElementById('actions');
+    if (!area || !acts) return;
+    area.innerHTML = '';
+    acts.innerHTML = '';
+
+    if (!state.revealed && total === 0) {
+      area.innerHTML = `
+        <div class="empty-state">
+          <div style="font-size: 48px; margin-bottom: 16px;">🎴✨</div>
+          <div style="font-weight: 600; margin-bottom: 16px;">¡SE ACABARON LAS CARTAS!</div>
+          <button class="btn btn-primary" onclick="window.buildDeck && buildDeck()">BARAJAR DE NUEVO</button>
+        </div>
+      `;
+      return;
+    }
+
+    if (state.deck.length >= 2) {
+      const stack2 = document.createElement('div');
+      stack2.className = 'card card-stack-2';
+      stack2.setAttribute('aria-hidden', 'true');
+      area.appendChild(stack2);
+    }
+    if (state.deck.length >= 1) {
+      const stack1 = document.createElement('div');
+      stack1.className = 'card card-stack-1';
+      stack1.setAttribute('aria-hidden', 'true');
+      area.appendChild(stack1);
+    }
+
+    const flipper = document.createElement('div');
+    flipper.className = 'flipper' + (state.revealed ? ' flipped' : '');
+
+    const back = document.createElement('div');
+    back.className = 'card card-back';
+    back.setAttribute('role', 'button');
+    if (!state.revealed) back.setAttribute('tabindex', '0');
+    back.setAttribute('aria-label', 'Revelar carta');
+    back.onclick = revealCard;
+    back.onkeydown = (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        revealCard();
+      }
+    };
+    back.innerHTML = `
+      <div class="card-back-logo">
+        <span>❤️</span>
       </div>
-      <div class="card-divider" aria-hidden="true"></div>
-      <p class="card-question">${escapeHtml(state.current.q)}</p>`;
-    flipper.appendChild(front);
-  }
+      <div class="card-back-text">TOCA PARA REVELAR</div>
+      <div style="margin-top: 12px; font-size: 20px;">✨</div>
+    `;
+    flipper.appendChild(back);
 
-  area.appendChild(flipper);
-
-  if (!state.revealed && state.deck.length > 0) {
-    acts.innerHTML = '<button class="btn btn-primary" type="button" onclick="revealCard()">Revelar carta</button>';
-  } else if (state.revealed && state.current) {
-    acts.innerHTML = `
-      <button class="btn" type="button" onclick="nextCard(false)">Pasar</button>
-      <button class="btn btn-check" type="button" onclick="nextCard(true)">✓ Respondida</button>`;
-    if (navigator.share) {
-      acts.innerHTML += `<button class="btn" type="button" aria-label="Compartir carta" onclick="navigator.share({ text: '${escapeHtml(state.current.q)}', title: 'Carta — ${CAT_LABELS[state.current.cat]}' }).catch(() => {})">↗ Compartir</button>`;
+    if (state.current) {
+      const front = document.createElement('div');
+      front.className = 'card card-front';
+      const prefix = state.current.cat === 'reto' ? '🔥 RETO: ' : '';
+      front.innerHTML = `
+        <div class="card-header">
+          <span class="category-badge cat-${state.current.cat}">${CAT_LABELS[state.current.cat]}</span>
+        </div>
+        <div class="card-divider" aria-hidden="true"></div>
+        <p class="card-question">${prefix}${escapeHtml(state.current.q)}</p>
+      `;
+      flipper.appendChild(front);
     }
-  }
-}
 
-function escapeHtml(str) {
-  if (!str) return '';
-  return str.replace(/[&<>]/g, function(m) {
-    if (m === '&') return '&amp;';
-    if (m === '<') return '&lt;';
-    if (m === '>') return '&gt;';
-    return m;
-  });
-}
+    area.appendChild(flipper);
 
-function editName(idx) {
-  const dlg = document.getElementById('dlg-name');
-  const input = document.getElementById('name-input');
-  input.value = state.names[idx];
-  dlg.showModal();
-  input.focus();
-  input.select();
-  
-  const handleClose = () => {
-    dlg.removeEventListener('close', handleClose);
-    if (dlg.returnValue === 'ok' && input.value.trim()) {
-      state.names[idx] = input.value.trim().slice(0, 20);
-      save();
-      render();
-    }
-  };
-  dlg.addEventListener('close', handleClose);
-}
-
-function addQuestion() {
-  const dlg = document.getElementById('dlg-add');
-  const qInput = document.getElementById('q-input');
-  const catSelect = document.getElementById('cat-input');
-  qInput.value = '';
-  catSelect.value = 'recuerdo';
-  dlg.showModal();
-  
-  const handleClose = () => {
-    dlg.removeEventListener('close', handleClose);
-    if (dlg.returnValue === 'ok' && qInput.value.trim()) {
-      const newCard = { cat: catSelect.value, q: qInput.value.trim() };
-      state.custom.push(newCard);
-      save();
-      if (state.filters[newCard.cat]) {
-        state.deck.unshift(newCard);
+    if (!state.revealed) {
+      const revealBtn = document.createElement('button');
+      revealBtn.className = 'btn btn-primary';
+      revealBtn.textContent = '✨ REVELAR CARTA ✨';
+      revealBtn.onclick = revealCard;
+      acts.appendChild(revealBtn);
+    } else {
+      const passBtn = document.createElement('button');
+      passBtn.className = 'btn btn-secondary';
+      passBtn.textContent = '↺ PASAR';
+      passBtn.onclick = () => nextCard(false);
+      acts.appendChild(passBtn);
+      
+      const answerBtn = document.createElement('button');
+      answerBtn.className = 'btn btn-check';
+      answerBtn.textContent = '✓ RESPONDIDA +1';
+      answerBtn.onclick = () => nextCard(true);
+      acts.appendChild(answerBtn);
+      
+      if (navigator.share) {
+        const shareBtn = document.createElement('button');
+        shareBtn.className = 'btn btn-secondary';
+        shareBtn.textContent = '↗ COMPARTIR';
+        shareBtn.onclick = () => navigator.share({ 
+          text: state.current.q, 
+          title: 'Carta — ' + CAT_LABELS[state.current.cat] 
+        }).catch(() => {});
+        acts.appendChild(shareBtn);
       }
-      render();
     }
-  };
-  dlg.addEventListener('close', handleClose);
-}
-
-const backgroundMusic = new BackgroundMusic();
-
-load();
-buildDeck();
-updateStatsDisplay();
-
-document.getElementById('card-p1')?.addEventListener('click', () => editName(0));
-document.getElementById('card-p2')?.addEventListener('click', () => editName(1));
-document.getElementById('btn-prev')?.addEventListener('click', prevCard);
-document.getElementById('btn-add')?.addEventListener('click', addQuestion);
-document.getElementById('btn-reset')?.addEventListener('click', resetGame);
-
-const btnMute = document.getElementById('btn-mute');
-function updateMute() {
-  if (btnMute) {
-    btnMute.textContent = state.sfxMuted ? '🔇 SFX' : '🔊 SFX';
-    btnMute.setAttribute('aria-pressed', String(!state.sfxMuted));
   }
-}
-updateMute();
-btnMute?.addEventListener('click', () => {
-  state.sfxMuted = !state.sfxMuted;
+
+  function escapeHtml(str) {
+    if (!str) return '';
+    return str.replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
+    });
+  }
+
+  function editName(idx) {
+    const dlg = document.getElementById('dlg-name');
+    const input = document.getElementById('name-input');
+    if (!dlg || !input) return;
+    input.value = state.names[idx];
+    dlg.showModal();
+    input.focus();
+    input.select();
+    
+    const handler = () => {
+      dlg.removeEventListener('close', handler);
+      if (dlg.returnValue === 'ok' && input.value.trim()) {
+        state.names[idx] = input.value.trim().slice(0, 20);
+        save();
+        render();
+      }
+    };
+    dlg.addEventListener('close', handler);
+  }
+
+  function addQuestion() {
+    const dlg = document.getElementById('dlg-add');
+    const q = document.getElementById('q-input');
+    const c = document.getElementById('cat-input');
+    if (!dlg || !q || !c) return;
+    q.value = '';
+    c.value = 'recuerdo';
+    dlg.showModal();
+    
+    const handler = () => {
+      dlg.removeEventListener('close', handler);
+      if (dlg.returnValue === 'ok' && q.value.trim()) {
+        state.custom.push({ cat: c.value, q: q.value.trim() });
+        save();
+        if (state.filters[c.value]) {
+          state.deck.unshift(state.custom[state.custom.length - 1]);
+        }
+        render();
+      }
+    };
+    dlg.addEventListener('close', handler);
+  }
+
+  load();
+  buildDeck();
+
+  window.buildDeck = buildDeck;
+  window.revealCard = revealCard;
+  window.nextCard = nextCard;
+  window.prevCard = prevCard;
+
+  document.getElementById('card-p1')?.addEventListener('click', () => editName(0));
+  document.getElementById('card-p2')?.addEventListener('click', () => editName(1));
+  document.getElementById('btn-prev')?.addEventListener('click', prevCard);
+  document.getElementById('btn-add')?.addEventListener('click', addQuestion);
+  document.getElementById('btn-reset')?.addEventListener('click', resetGame);
+  document.getElementById('timer-toggle')?.addEventListener('click', toggleTimer);
+  
+  const btnMute = document.getElementById('btn-mute');
+  function updateMute() {
+    if (btnMute) {
+      btnMute.textContent = state.muted ? '🔇 SONIDO' : '🔊 SONIDO';
+      btnMute.setAttribute('aria-pressed', String(state.muted));
+    }
+  }
   updateMute();
-  save();
-});
+  btnMute?.addEventListener('click', () => {
+    state.muted = !state.muted;
+    updateMute();
+    save();
+  });
 
-const musicControl = document.getElementById('music-control');
-const musicIcon = document.getElementById('music-icon');
-const musicText = document.getElementById('music-text');
-let musicPlaying = false;
+  document.addEventListener('keydown', (e) => {
+    if (e.target.matches('input, textarea, select, dialog')) return;
+    if ((e.key === ' ' || e.key === 'Enter') && !state.revealed && state.deck.length > 0) {
+      e.preventDefault();
+      revealCard();
+    } else if (e.key === 'ArrowRight' && state.revealed) {
+      nextCard(false);
+    } else if (e.key === 'ArrowLeft') {
+      prevCard();
+    } else if ((e.key === 'c' || e.key === 'C') && state.revealed) {
+      nextCard(true);
+    }
+  });
 
-musicControl?.addEventListener('click', async () => {
-  musicPlaying = await backgroundMusic.toggle();
-  musicIcon.textContent = musicPlaying ? '🎵' : '🎵❌';
-  musicText.textContent = musicPlaying ? 'Música ON' : 'Música OFF';
-});
+  const toggleBtn = document.getElementById('timer-toggle');
+  if (toggleBtn) toggleBtn.style.opacity = state.timerEnabled ? '1' : '0.5';
 
-document.addEventListener('keydown', (e) => {
-  if (e.target.matches('input, textarea, select')) return;
-  if ((e.key === ' ' || e.key === 'Enter') && !state.revealed && state.deck.length > 0) {
-    e.preventDefault();
-    revealCard();
-  } else if (e.key === 'ArrowRight' && state.revealed) {
-    e.preventDefault();
-    nextCard(false);
-  } else if (e.key === 'ArrowLeft') {
-    e.preventDefault();
-    prevCard();
-  } else if ((e.key === 'c' || e.key === 'C') && state.revealed) {
-    e.preventDefault();
-    nextCard(true);
-  } else if (e.key === 'm' || e.key === 'M') {
-    e.preventDefault();
-    musicControl?.click();
-  }
-});
-
-setTimeout(() => {
-  triggerConfetti();
-  showNotification('✨ ¡Bienvenidos al juego! ✨', 'success', 3000);
-}, 500);
+  window.addEventListener('beforeunload', () => {
+    if (timerInterval) clearInterval(timerInterval);
+    if (audioCtx) audioCtx?.close();
+  });
+})();
 </script>
 </body>
 </html>
